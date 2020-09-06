@@ -16,7 +16,12 @@
     "friendly-errors-webpack-plugin": "^1.7.0",
     "portfinder": "^1.0.26",
     "postcss-loader": "^3.0.0"，// css兼容查案件自动添加-webkit，-moz，-ms，-o
+    autoprefixer与postcss-loader配合使用
     "postcss-modules-scope": "^2.2.0",
     "uglifyjs-webpack-plugin": "^2.2.0",缩小（压缩优化）js文件
     "webpack-bundle-analyzer": "^3.8.0",性能分析的插件
     "webpack-merge": "^4.2.2"   合并webpack配置文件
+    用terser-webpack-plugin替换掉uglifyjs-webpack-plugin解决uglifyjs不支持es6语法问题
+webpack-bundle-analyzer //生成打包图
+    "mini-css-extract-plugin": "^0.11.0",//抽离css
+    "optimize-css-assets-webpack-plugin": "^5.0.4",//压缩css

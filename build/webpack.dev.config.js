@@ -3,6 +3,7 @@ const portfinder = require('portfinder')
 const webpack = require('webpack')
 const path = require('path')
 const FrendlyErrorsWebpackPlugins = require('friendly-errors-webpack-plugin')
+const autoprefixer = require('autoprefixer')
 const { dev } = require('../config')
 const processEnv = require('../config/dev.env')
 const baseWebpackConfig = require('./webpack.base.config')
@@ -21,6 +22,43 @@ const devWebpackConfig = {
     }),
     new webpack.HashedModuleIdsPlugin()
   ],
+  module: {
+    rules: [
+      {
+        test: /\.css/,
+        use:[
+        'style-loader' ,
+        'css-loader',
+        {
+          loader:'postcss-loader', // 跟MiniCssExtractPlugin.loader一起使用时 要添加 使用范围
+          options:{
+            plugins:[
+              autoprefixer({
+                overrideBrowserslist: ['last 5 version', '>1%', 'ios 7']
+              })
+            ]
+          }
+        }]
+      },
+      {
+        test: /\.less$/,
+        loader: [
+          'style-loader',
+          'css-loader',
+          {
+            loader:'postcss-loader', // 跟MiniCssExtractPlugin.loader一起使用时 要添加 使用范围
+            options:{
+              plugins:[
+                autoprefixer({
+                  overrideBrowserslist: ['last 5 version', '>1%', 'ios 7']
+                })
+              ]
+            }
+          },
+          'less-loader']
+      }
+    ]
+  },
   watch: true,
   //监听配置
   watchOptions: {

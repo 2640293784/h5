@@ -1,64 +1,58 @@
 <template>
-<!-- tabbar -->
-    <mt-tabbar class="footer" fixed>
-			<router-link to="/" :class="{ 'active':selected==1}" class="footer-color mt-tab-item">
-				<font class="iconfont">&#xe612;</font>
-				<span class="inco_txt">首页</span>
-			</router-link>
-			<router-link to="/classify" :class="{'active':selected==2}" class="footer-color mt-tab-item">
-				<font class="iconfont">&#xe660;</font>
-				<span class="inco_txt">分类</span>
-			</router-link>
-			<router-link to="/shopping" :class="{'active':selected==3}" class="footer-color mt-tab-item">
-				<font class="iconfont">&#xe63e;</font>
-				<span class="inco_txt">购物车</span>
-			</router-link>
-			<router-link to="/my" :class="{'active':selected==4}" class="footer-color mt-tab-item">
-				<font class="iconfont">&#xe62e;</font>
-				<span class="inco_txt">我的</span>
-			</router-link>
-    </mt-tabbar>
+  <van-tabbar v-model="newActive" class="tabbar"  @change="onChange">
+    <van-tabbar-item class="tabbar-item__text">
+      <i class="iconfont">&#xe612;</i>
+      <p class="inco_txt">首页</p>
+    </van-tabbar-item>
+    <van-tabbar-item class="tabbar-item__text">
+      <i class="iconfont">&#xe660;</i>
+      <p class="inco_txt">分类</p>
+    </van-tabbar-item>
+    <van-tabbar-item class="tabbar-item__text">
+      <i class="iconfont">&#xe63e;</i>
+      <p class="inco_txt">购物车</p>
+    </van-tabbar-item>
+    <van-tabbar-item class="tabbar-item__text">
+      <i class="iconfont">&#xe62e;</i>
+      <p class="inco_txt">我的</p>
+    </van-tabbar-item>
+  </van-tabbar>
 <!--tabbar-->
 </template>
 <script>
 	export default{
 		name:'FooterNav',
 		props:{
-			selected:{
+			active:{
 				type:String,
-				default:'1'
+				default:0
 			}
 		},
 		data(){
-			return{}
-		}
+			return{
+        newActive:this.active
+      }
+		},
+    methods:{
+      onChange(val){
+        const routerList = ['/','/classify','/shoppingCart','/users']
+        this.$router.push(routerList[val])
+      }
+    }
 	}
 </script>
-<style>
-.footer{
-		  box-shadow: 0 -0.13rem 0.22rem #ccc;
-  -webkit-box-shadow: 0 -0.13rem 0.22rem #ccc;
-	 -moz-box-shadow: 0 -0.13rem 0.22rem #ccc;
+<style lang="less" scoped>
+.tabbar{
+	box-shadow: 0 -0.13rem 0.22rem #ccc;
 	 height: 2rem;
 	 max-width: 640px;
 	 margin: auto;
 }
-.inco_txt{
-	    display: block;
-		  line-height: .6rem;
-		    }
-.footer-color{
-	color: #494949;
-	padding-top: .3rem;
-}
-.footer-color .inco_txt,.footer-color .iconfont{
-	font-size: .62rem;
-}
-.active{
-	color: #26a2ff;
-}
-.footer-color .iconfont{
-	display: inline-block;
-	margin-bottom: .15rem;
+.tabbar-item__text{
+  text-align: center;
+  font-size: .62rem;
+  i{
+    margin-bottom: .15rem;
+  }
 }
 </style>

@@ -13,7 +13,7 @@ module.exports = {
   dev: {
     //devEnv.OPEN_PROXY为true开启代理
     porxy: devEnv.OPEN_PROXY === true ? porxyTable : {},
-    port: 3000,//端口
+    port: 8000,//端口
     host: 'localhost',
     devtool: 'eval-source-map',
     //source-map产生一个映射文件

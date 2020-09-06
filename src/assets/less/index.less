@@ -22,7 +22,8 @@ body{
 	/*开启moblie网页快速滚动和回弹的效果*/
 	-webkit-overflow-scrolling: touch;
 	overflow-x: hidden;
-	-webkit-text-size-adjust: none !important;
+  -webkit-text-size-adjust: none !important;
+  background-color: #f2f2f2;
 	max-width: 640px;
 	margin: 0 auto;
 }
@@ -59,14 +60,16 @@ li,ol{
 	list-style:none;
 }
 @font-face {font-family: 'iconfont';
-     src: url('../iconfont/iconfont.eot'); /* IE9*/
-     src: url('../iconfont/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../iconfont/iconfont.woff') format('woff') /* chrome、firefox */
-     url('../iconfont/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
- }
+  src: url('../iconfont/iconfont.eot'); /* IE9*/
+  src: url('../iconfont/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../iconfont/iconfont.woff') format('woff'), /* chrome、firefox */
+  url('../iconfont/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('../iconfont/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
 .iconfont{
     font-family:"iconfont" !important;
-    font-size:16px;font-style:normal;
+    font-size:16px;
+    font-style:normal;
     -webkit-font-smoothing: antialiased;
     -webkit-text-stroke-width: .008rem;
     -moz-osx-font-smoothing: grayscale;

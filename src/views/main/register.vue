@@ -58,17 +58,14 @@ export default {
         password: this.password
       }
       userRegister(params).then(res => {
-        let { message } = res.data;
-        this.toast(message);
-        // if(isMatch){
-        // 	this.popup=true;
-        // 	setTimeout(()=>{
-        // 		this.popup=false;
-        // 		this.$router.push("/login");
-        // 	},1000) 
-        // 	}else{
-        // 		this.toast(message);
-        // 		}
+        const { message, isMatch } = res.data;
+        if (isMatch)
+        {
+          this.$router.push("/login");
+        } else
+        {
+          this.toast(message);
+        }
       });
     }
   }
@@ -79,7 +76,7 @@ export default {
 .page-container {
   padding-top: 5.33rem;
   height: 100%;
-  background: url(~@img/my/timg.jpg) no-repeat;
+  background: url(~@img/user/timg.jpg) no-repeat;
   background-size: 100% 100%;
 }
 h1 {

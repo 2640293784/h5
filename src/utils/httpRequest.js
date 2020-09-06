@@ -2,7 +2,7 @@ import Vue from 'vue'
 import axios from 'axios'
 //路由
 import router from '../router'
-import { Toast, Indicator } from 'mint-ui'
+import { Toast, Indicator } from 'vant'
 import qs from 'qs'
 axios.default.timeout = 3000;
 //请求拦截器
@@ -17,17 +17,17 @@ axios.interceptors.request.use(config => {
     delete config.userId;
     return config;
   }
-  let userId = Vue.cookie.get('userId');
-  if (userId)
-  {
-    config.headers = {
-      "userId": userId
-    }
-  } else
-  {
-    Toast('请先登陆')
-    router.push({ path: '/login' });
-  }
+  // let userId = Vue.cookie.get('userId');
+  // if (userId)
+  // {
+  //   config.headers = {
+  //     "userId": userId
+  //   }
+  // } else
+  // {
+  //   Toast('请先登陆')
+  //   router.push({ path: '/login' });
+  // }
   if (config.method == 'post')
   {
     config.data = qs.stringify(config.data);

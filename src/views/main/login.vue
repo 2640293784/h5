@@ -50,7 +50,7 @@ export default{
 .page-container { 
     padding-top: 5.33rem;
     height: 100%;
-    background: url(~@img/my/timg.jpg) no-repeat;
+    background: url(~@img/user/timg.jpg) no-repeat;
     background-size:100% 100%;
 }
 h1 {

@@ -27,9 +27,9 @@ export const password = data => axios({
   userId: false
 })
 //首页
-export const movieSwiper = data => axios({
+export const homeCarousel = data => axios({
   method: 'get',
-  url: "/api/index/index.php",
+  url: "/api/api/",
   data: data || {}
 })
 export const list = data => axios({

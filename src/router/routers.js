@@ -3,7 +3,7 @@ const _import = require('./import-' + process.env.NODE_ENV)
 const routers = [
   {
     path: '/',
-    component: _import('main/index'),
+    component: _import('home'),
     name: 'main',
     meta: {
       title: '首页'
@@ -31,6 +31,30 @@ const routers = [
     name: 'password',
     meta: {
       title: '找回密码'
+    }
+  },
+  {
+    path: '/classify',
+    component: _import('classify'),
+    name: 'classify',
+    meta: {
+      title: '分类'
+    }
+  },
+  {
+    path: '/shoppingCart',
+    component: _import('shoppingCart'),
+    name: 'shoppingCart',
+    meta: {
+      title: '购物车'
+    }
+  },
+  {
+    path: '/users',
+    component: _import('users'),
+    name: 'users',
+    meta: {
+      title: '个人中心'
     }
   },
   {
