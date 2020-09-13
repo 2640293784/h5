@@ -29,7 +29,7 @@ export const password = data => axios({
 //首页
 export const homeCarousel = data => axios({
   method: 'get',
-  url: "/api/api/",
+  url: "/api/home/carouser",
   data: data || {}
 })
 export const list = data => axios({

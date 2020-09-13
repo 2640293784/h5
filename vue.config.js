@@ -1,20 +1,19 @@
-const path = require('path')
-const devEnv = require('./dev.env')
 const porxyTable = {
   '/api': {
     target: 'http://192.168.1.100:3000', //设置调用接口域名和端口号别忘了加http
     changeOrigin: true,
     pathRewrite: {
-      '^/api': '/api'
+      '/api': '/api'
     }
   }
 }
 module.exports = {
   dev: {
-    //devEnv.OPEN_PROXY为true开启代理
-    porxy: devEnv.OPEN_PROXY === true ? porxyTable : {},
+    env:"development",
+    open_proxy:true, //devEnv.OPEN_PROXY为true开启代理
+    proxy: porxyTable,
     port: 8000,//端口
-    host: 'localhost',
+    host: '192.168.1.100',
     devtool: 'eval-source-map',
     //source-map产生一个映射文件
     //eval-source-map不会产生单独的文件，但是会产生行和列
@@ -26,6 +25,7 @@ module.exports = {
     errorOverlay: true
   },
   build: {
+    env:"production"
     //devtool: 'cheap-module-eval-source-map'
     // productionGizp:false,
     // productionGzipExtensions:['js','css'],

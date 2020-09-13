@@ -4,13 +4,17 @@ const webpack = require('webpack')
 const path = require('path')
 const FrendlyErrorsWebpackPlugins = require('friendly-errors-webpack-plugin')
 const autoprefixer = require('autoprefixer')
-const { dev } = require('../config')
-const processEnv = require('../config/dev.env')
+const { dev } = require('../vue.config')
 const baseWebpackConfig = require('./webpack.base.config')
 const { ipconfig, createPort } = require('./utils')
-const { PORT, HOST } = processEnv
-const serverPort = createPort(dev.port || PORT)
-let setServerPort = dev.port || PORT
+const processEnv = {
+  ENV:dev.Env,
+  OPEN_PROXY:dev.open_proxy||false,//是否开启代理
+  PORT:dev.port,
+  HOST:dev.host
+}
+const serverPort = createPort(dev.port)
+let setServerPort = dev.port
 serverPort.then(res => {
   setServerPort = res
 })
@@ -71,7 +75,7 @@ const devWebpackConfig = {
     clientLogLevel: 'warning',
     publicPath: dev.accetsPublicPath,
     port: setServerPort,
-    host: dev.host || HOST,
+    host: dev.host,
     progress: true,//运行进度条
     hot: true,
     historyApiFallback: true,
@@ -85,7 +89,7 @@ const devWebpackConfig = {
 }
 const webpackConfig = merge(baseWebpackConfig, devWebpackConfig)
 module.exports = new Promise((resolve, reject) => {
-  portfinder.basePort = dev.port || PORT
+  portfinder.basePort = dev.port
   portfinder.getPort((err, port) => {
     if (err)
     {

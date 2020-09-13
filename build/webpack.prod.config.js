@@ -7,8 +7,10 @@ const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plug
 const autoprefixer=require('autoprefixer')
 const TerserJSPlugin = require('terser-webpack-plugin');
 const merge = require('webpack-merge')
-const { build } = require('../config')
-const processEnv = require('../config/prod.env')
+const { build } = require('../vue.config')
+const processEnv = {
+  ENV:build.env
+}
 const baseWebpackConfig = require('./webpack.base.config')
 const prodWebpackConfig = {
   devtool:build.devtool,
@@ -69,19 +71,4 @@ module:{
 mode:'production'
 }
 const webpackConfig = merge(baseWebpackConfig,prodWebpackConfig)
-// if(build.productionGizp){
-//   const CompressionWebpackPlugin = require('compression-webpack-plugin')
-//   const productionGzipExtensions = build.productionGzipExtensions||[]
-//   webpackConfig.plugins.push(new CompressionWebpackPlugin({
-//     filename: '[path].gz[query]',
-//     algorithm: 'gzip',
-//     test: new RegExp(`\\.(${productionGzipExtensions.join('|')})`),
-//     threshold: 10240,
-//     minRatio: 0.8
-//   }))
-// }
-// if(build.bundleAnalyzer){
-//   const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
-//   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
-// }
 module.exports = webpackConfig

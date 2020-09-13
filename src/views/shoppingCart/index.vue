@@ -154,7 +154,7 @@
 	}
 </script>
 
-<style lang="less"  scoped>
+<style lang="less" scoped>
 .s_title{
 	width: 100%;
 	height: 1.78rem;
@@ -225,10 +225,8 @@
 	display: -webkit-box;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	-webkit-line-clamp: 2;
-	/*! autoprefixer: off */
-	-webkit-box-orient: vertical;
-	/* autoprefixer: on */
+	line-clamp: 2;
+	box-orient: vertical;
 }
 .supp_c_money{
 	display: block;
@@ -297,17 +295,6 @@
 .con_sub .all_style{
 	color: #ED0012;
 }
-// .con_sub button{
-// 	display: block;
-// 	width: 3.8rem;
-// 	height: 100%;
-// 	background:#ED0012;
-// 	text-align: center;
-// 	border-radius: .13rem .13rem 0 0;
-// 	font-size: 0.6rem;
-// 	color: #fff;
-// 	line-height: 2rem;
-// }
 .shop_noly span{
 	display: block;
 	width: .47rem;
@@ -337,14 +324,12 @@
 				}
 .shop_noly input:checked+label:after{
 									content: "";
-									position: absolute;left: 3px;bottom: 0.1rem;
+                  position: absolute;left: 3px;
+                  bottom: 0.1rem;
 									width: .53rem;height: .27rem;
 									border: .08rem solid #6b708b;
 									border-top-color: transparent;
 									border-right-color: transparent;
-									-ms-transform: rotate(-60deg); 
-									-moz-transform: rotate(-60deg); 
-									-webkit-transform: rotate(-60deg); 
 									transform: rotate(-45deg);
 									} 
 input.movemain{

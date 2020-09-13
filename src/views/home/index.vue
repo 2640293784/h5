@@ -13,7 +13,7 @@
         </div>	
       </header>
     </van-sticky>
-    <g-swiper class="swiper" @touch="swiperTouch" :list="swiperData"></g-swiper>
+    <g-swiper class="swiper" :list="swiperData"></g-swiper>
     	<!--导航-->
     <div class="nav">
       <van-row>
@@ -34,8 +34,8 @@ export default {
   name: 'main',
   data () {
     return {
-      swiperData: ['https://img.yzcdn.cn/vant/apple-2.jpg','https://img.yzcdn.cn/vant/apple-2.jpg'],
-          	list:[
+      swiperData: [],
+      list:[
     	     {
     	     	text:"积分商城",
     	     	icon:require("@assets/img/banner/1.png"),
@@ -81,13 +81,11 @@ export default {
   },
 mounted () {
  homeCarousel().then(res=>{
-   console.log(res)
- })
-},
-methods:{
-  swiperTouch(index){
-console.log(index,item)
+  const { data,status } = res
+  if(status === 200){
+this.swiperData = data;
   }
+ })
 }
 }
 </script>

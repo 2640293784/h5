@@ -37,18 +37,12 @@ axios.interceptors.request.use(config => {
 // 响应拦截器
 axios.interceptors.response.use(response => {
   const { status } = response
-  Indicator.close();
-  if (status === 200)
-  {
-    return response;
-  } else
-  {
+  if (status === 200){
+    return response.data;
+  } else{
     console.log(response)
-    Toast('请求失败!')
   }
 }, error => {
-  Indicator.close();
-  Toast(error);
   return error;
 })
 export default axios;
