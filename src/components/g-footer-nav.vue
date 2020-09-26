@@ -45,8 +45,6 @@
 .tabbar{
 	box-shadow: 0 -0.13rem 0.22rem #ccc;
 	 height: 2rem;
-	 max-width: 640px;
-	 margin: auto;
 }
 .tabbar-item__text{
   text-align: center;

@@ -13,19 +13,20 @@ html {
 	/*a标签及拥有 :active伪类的元素有默认的高亮框*/
 	-webkit-tap-hightlight-color: transparent;
 	/*禁止文本被选中*/
-	-webkit-user-select: none;
+  -webkit-user-select: none;
+	max-width: 768px;
+	margin: 0 auto;
 	height: 100%;
 }
 body{
-	overflow-x:hidden;
+  overflow:hidden;
+  position: relative;
 	height: 100%;
 	/*开启moblie网页快速滚动和回弹的效果*/
 	-webkit-overflow-scrolling: touch;
 	overflow-x: hidden;
   -webkit-text-size-adjust: none !important;
   background-color: #f2f2f2;
-	max-width: 640px;
-	margin: 0 auto;
 }
 a{
 	width: 100%;
@@ -68,7 +69,7 @@ li,ol{
 }
 .iconfont{
     font-family:"iconfont" !important;
-    font-size:16px;
+    font-size:.8rem;
     font-style:normal;
     -webkit-font-smoothing: antialiased;
     -webkit-text-stroke-width: .008rem;

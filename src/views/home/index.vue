@@ -1,35 +1,48 @@
 <template>
   <div id="main-home">
-    <van-sticky>
-      <header>	
-        <div class="jd-logo">
-          <img src="@img/logo.png" />
-        </div>
-        <div class="search">
-          <van-search v-model="value" shape="round" placeholder="请输入搜索关键词"/>
-        </div>
-        <div class="address">
-          <router-link to="/address">北京</router-link>
-        </div>	
-      </header>
-    </van-sticky>
-    <g-swiper class="swiper" :list="swiperData"></g-swiper>
-    	<!--导航-->
-    <div class="nav">
-      <van-row>
-        <van-col span="6" class="col-item" v-for="item in list" :key="item.href">
-          <router-link :to="item.href">
-            <img :src="item.icon" />
-            <p>{{item.text}}</p>
-          </router-link>
-        </van-col>
-      </van-row>
+    <div class="main-container">
+      <van-sticky>
+        <header>	
+          <div class="jd-logo">
+            <img src="@img/logo.png" />
+          </div>
+          <div class="search">
+            <van-search v-model="value" shape="round" placeholder="请输入搜索关键词"/>
+          </div>
+          <div class="address">
+            <router-link to="/address">北京</router-link>
+          </div>	
+        </header>
+      </van-sticky>
+      <g-swiper class="swiper" :list="swiperData"></g-swiper>
+        <!--导航-->
+      <div class="nav">
+        <van-row>
+          <van-col span="6" class="col-item" v-for="item in list" :key="item.href">
+            <router-link :to="item.href">
+              <img :src="item.icon" />
+              <p>{{item.text}}</p>
+            </router-link>
+          </van-col>
+        </van-row>
+      </div>
+      <van-notice-bar left-icon="volume-o" text="夏季炎热签收水果前请确认"/>
+      <g-title title="最新上映">
+        <router-link to="/">
+          <div class="secskill-more">
+            <span>查看更多</span>
+            <span class="icon"></span>
+          </div>
+        </router-link>
+      </g-title>
+      <movie-list></movie-list>
     </div>
     <g-footer-nav :active="0"></g-footer-nav>
   </div>
 </template>
 <script>
 import { homeCarousel } from '@/api'
+import MovieList from './movie-list'
 export default {
   name: 'main',
   data () {
@@ -79,19 +92,40 @@ export default {
     	]
     }
   },
-mounted () {
- homeCarousel().then(res=>{
-  const { data,status } = res
-  if(status === 200){
-this.swiperData = data;
-  }
- })
+  components:{ MovieList },
+  mounted () {
+    homeCarousel().then(res=>{
+      const { data,status } = res
+      if(status === 200){
+        this.swiperData = data;
+      }
+    })
 }
 }
 </script>
 <style lang="less" scoped>
-#main-home {
-  height: 100%;
+  #main-home {
+    height: 100%;
+    overflow: hidden;
+  }
+  .main-container{
+    height: 100%;
+    padding-bottom: 2.44rem;
+    overflow-y: auto;
+  }
+  span.secskill-icon{
+	display: inline-block;
+	margin-left: .44rem;
+	width: .88rem;
+	height: .71rem;
+	background-position: -.18rem -6.49rem;
+	margin-top:15px;
+}
+.secskill-more{
+	padding-right: .71rem;
+	height: 2rem;
+	line-height: 2rem;
+  font-size: .71rem;
 }
 .nav{
   padding: .53rem 0;

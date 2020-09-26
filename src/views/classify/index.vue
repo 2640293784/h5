@@ -1,13 +1,11 @@
 <template>
   <div class="classify">
-    <div>
     <van-dropdown-menu>
       <van-dropdown-item v-model="value1" :options="option1" />
       <van-dropdown-item v-model="value2" :options="option2">
         1111
       </van-dropdown-item>
     </van-dropdown-menu>
-    </div>
     <div class="classify-row">
       <van-sidebar v-model="activeKey" @change="sidebarChange">
         <van-sidebar-item title="积分商城" />
@@ -22,13 +20,14 @@
       </van-sidebar>
       <g-pull-refresh
       :number="3"
-      :loading="loading"
+      :pullLoading="loading"
+      :finished="finished"
       :refreshing="refreshing"
       :list="list"
       @pull-down="pullList"
       @drop-down="dropList"
       >
-        <template #item="{ item }" >
+        <template #child="{ item }" >
           <router-link :to="item.href">
             <img :src="item.url" />
             <p>{{item.text}}</p>
@@ -46,6 +45,8 @@ export default {
     return {
       loading:false,
       refreshing:false,
+      finished:false,
+      index:0,
       activeKey:0,
       value1:0,
       value2:0,
@@ -143,8 +144,16 @@ export default {
       console.log(value)
     },
     pullList () {
+      this.index++
+      setTimeout(() => {
+        if(this.index===5){
+          this.finished=true
+          this.loading = false
+          return false;
+        }
         this.list = this.list.concat(this.list)
-console.log(123)
+        this.loading = false
+      }, 1000);
     },
     dropList () {
       const list = this.list
@@ -160,12 +169,13 @@ console.log(123)
 </script>
 <style lang="less" scoped>
   .classify{
-    // display: flex;
     height: 100%;
     padding-bottom: 2.2rem;
   }
   .classify-row{
     display: flex;
+    height: calc(100% - 2rem);
+    overflow: hidden;
   }
   .col-item{
     p{
