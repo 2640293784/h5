@@ -2,34 +2,38 @@ import axios from '../utils/httpRequest'
 //用户
 export const userInfo = data => axios({
   method: 'get',
-  url: "/api/user/getUserInfo",
+  url: "/api/user/getIntergral",
+  data: data || {}
+})
+//用户充值
+export const userRecharge = data => axios({
+  method: "post",
+  url: "/api/user/rechargeIntergral",
   data: data || {}
 })
 //用户注册
 export const userRegister = data => axios({
   method: "post",
   url: "/api/user/signUp",
-  data: data || {},
-  userId: false
+  data: data || {}
 })
 //用户登录
 export const userLogin = data => axios({
   method: "post",
-  url: "/api/user/signOut",
-  data: data || {},
-  userId: false
+  url: "/api/user/signIn",
+  data: data || {}
 })
 //找回密码
 export const password = data => axios({
   method: "post",
   url: "/api/user/password",
-  data: data || {},
-  userId: false
+  data: data || {}
 })
 //首页
 export const homeCarousel = data => axios({
   method: 'get',
   url: "/api/home/carouser",
+  loading:false,
   data: data || {}
 })
 export const list = data => axios({
@@ -90,3 +94,33 @@ export const integList = data => axios({
   data: data || {}
 })
 //个人中心
+//获取收货地址
+export const getAddress = data => axios({
+  method: 'get',
+  url: "/api/user/getAdress",
+  data: data || {}
+})
+//添加收货地址
+export const addAddress = data => axios({
+  method: 'post',
+  url: "/api/user/addAdress",
+  data: data || {}
+})
+//修改收货地址
+export const updateAdress = data => axios({
+  method: 'post',
+  url: "/api/user/updateAdress",
+  data: data || {}
+})
+//删除收货地址
+export const deleteAddress = data => axios({
+  method: 'post',
+  url: "/api/user/delAdress",
+  data: data || {}
+})
+//删除收货地址
+export const checkoutAdress = data => axios({
+  method: 'post',
+  url: "/api/user/checkoutAdress",
+  data: data || {}
+})

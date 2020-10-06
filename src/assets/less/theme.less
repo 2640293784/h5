@@ -85,7 +85,9 @@
 // Card
 
 // Cell
-
+.van-card:not(:first-child) {
+   margin-top: 0;
+}
 // CellGroup
 
 // Checkbox
@@ -137,7 +139,18 @@
 // Loading
 
 // NavBar
-
+.van-nav-bar{
+  .van-icon{
+    color: #969799;
+  }
+}
+.van-nav-bar__left,
+ .van-nav-bar__right{
+padding: 0 .22rem;
+}
+.van-nav-bar__arrow{
+  font-size: 1rem;
+}
 // NoticeBar
 
 // Notify
@@ -190,18 +203,40 @@
 // Sticky
 
 // Stepper
-
+.van-stepper__minus, 
+.van-stepper__plus,
+.van-stepper__input{
+  background-color: white;
+  border:1px solid #c3c3c3;
+}
+.van-stepper__input{
+  margin: 0;
+  border-left: 0;
+  border-right: 0;
+}
 // SubmitBar
 
 // Swipe
 
 // Switch
-
+.van-switch{
+  height: .8rem;
+  width: 2rem;
+}
+.van-switch__node{
+  width: .8rem;
+  height: .8rem;
+}
+.van-switch--on{
+  .van-switch__node{
+   transform: translateX(1.2rem);
+  }
+}
 // SwitchCell
 
 // Tabbar
 .van-tabbar-item--active{
-color:@green;
+  color:@green;
 }
 
 // TabbarItem

@@ -2,47 +2,81 @@ import Vue from 'vue'
 import axios from 'axios'
 //路由
 import router from '../router'
-import { Toast, Indicator } from 'vant'
-import qs from 'qs'
-axios.default.timeout = 3000;
+import { Notify, Toast } from 'vant'
+const http = axios.create({
+  timeout: 1000 * 50,
+  withCredentials: true
+})
 //请求拦截器
-axios.interceptors.request.use(config => {
+http.interceptors.request.use(config => {
   //默认json格式
-  config.headers['Content-Type'] = config['Content-Type'] || 'application/json'
-  config.loading = config.loading || false
+  config.headers['Content-Type'] = config['Content-Type'] || 'application/json; charset=utf-8'
+  config.loading = config.loading || true
   //判断是否需要loading
-  config.loading && Indicator.open();
-  if (config.userId === false)
-  {
-    delete config.userId;
-    return config;
-  }
-  // let userId = Vue.cookie.get('userId');
-  // if (userId)
-  // {
-  //   config.headers = {
-  //     "userId": userId
+  config.loading && Toast.loading({
+    duration: 0
+  });
+  //判断是否需要验证登录
+  // if (config.userId) {
+  //   let userId = Vue.cookie.get('userId')
+  //   if (userId) {
+  //     config.headers = {
+  //       "userId": userId
+  //     }
+  //   } else {
+  //     Notify({ 
+  //       type: 'warning',
+  //       message: '请先登陆',
+  //       duration:1000
+  //     });
+  //     router.push({ path: '/login' });
   //   }
-  // } else
-  // {
-  //   Toast('请先登陆')
-  //   router.push({ path: '/login' });
+  // }else{
+  //   delete config.userId;
+  //   return config;
   // }
-  if (config.method == 'post')
-  {
-    config.data = qs.stringify(config.data);
-  }
   return config;
 }, err => Promise.reject(err))
 // 响应拦截器
-axios.interceptors.response.use(response => {
-  const { status } = response
-  if (status === 200){
-    return response.data;
-  } else{
-    console.log(response)
+http.interceptors.response.use(response => {
+  Toast.clear()
+  const { status, data } = response || {}
+  switch (status) {
+    case 200:
+      if(data.errno===0){
+        return data;
+      }else{
+        Notify({ 
+          type: 'warning',
+          message:data.message
+        })
+        if(data.data.code === 401){
+          router.push({ path: '/login' });
+        }
+      }
+      break;
+    case 404:
+      Notify({ 
+        type: 'danger',
+        message: '请求接口不存在',
+        duration:500
+      });
+      break;
+    default:
+      Notify({ 
+        type: 'warning',
+        message,
+        duration:500
+      })
+      break;
   }
 }, error => {
-  return error;
+  Toast.clear()
+  Notify({ 
+    type: 'danger',
+    message:'请求错误',
+    duration:500
+  });
+  new Error(error)
 })
-export default axios;
+export default http;

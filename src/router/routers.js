@@ -50,11 +50,47 @@ const routers = [
     }
   },
   {
+    path: '/details/:id',
+    component: _import('details'),
+    name: 'details',
+    meta: {
+      title: '产品详情',
+      show:true
+    }
+  },
+  {
     path: '/users',
     component: _import('users'),
     name: 'users',
     meta: {
       title: '个人中心'
+    }
+  },
+  {
+    path: '/users/address',
+    component: _import('users/address'),
+    name: 'usersAddress',
+    meta: {
+      title: '收货地址',
+      show:true
+    }
+  },
+  {
+    path: '/users/order',
+    component: _import('users/order'),
+    name: 'usersOrder',
+    meta: {
+      title: '我的订单',
+      show:true
+    }
+  },
+  {
+    path: '/users/recharge',
+    component: _import('users/recharge'),
+    name: 'usersRecharge',
+    meta: {
+      title: '账户充值',
+      show:true
     }
   },
   {

@@ -4,7 +4,7 @@
       <span class="sprite-icon"></span>
       <h2>{{title}}</h2>
     </div>
-    <div>
+    <div class="g-title-right">
       <slot></slot>
     </div>
 	</div>
@@ -36,9 +36,16 @@
   .g-title-left{
     display: flex;
   }
+  .g-title-right{
+    position: relative;
+    &::after{
+content: '>';
+    }
+  }
   h2{
     line-height: 2rem;
     font-size: .76rem;
+    font-weight: 200;
   }
 .sprite-icon{
   width: .88rem;

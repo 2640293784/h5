@@ -2,9 +2,7 @@
   <div class="classify">
     <van-dropdown-menu>
       <van-dropdown-item v-model="value1" :options="option1" />
-      <van-dropdown-item v-model="value2" :options="option2">
-        1111
-      </van-dropdown-item>
+      <van-dropdown-item v-model="value2" :options="option2"></van-dropdown-item>
     </van-dropdown-menu>
     <div class="classify-row">
       <van-sidebar v-model="activeKey" @change="sidebarChange">
@@ -28,7 +26,7 @@
       @drop-down="dropList"
       >
         <template #child="{ item }" >
-          <router-link :to="item.href">
+          <router-link class="col-item" to="/details/1">
             <img :src="item.url" />
             <p>{{item.text}}</p>
           </router-link>
@@ -178,8 +176,9 @@ export default {
     overflow: hidden;
   }
   .col-item{
+    text-align: center;
     p{
-      padding-top: .53rem;
+      padding: .44rem 0;
     }
   }
 </style>

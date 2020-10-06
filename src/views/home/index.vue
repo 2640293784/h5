@@ -36,6 +36,14 @@
         </router-link>
       </g-title>
       <movie-list></movie-list>
+      <g-title title="生日专区">
+        <router-link to="/">
+          <div class="secskill-more">
+            <span>查看更多</span>
+            <span class="icon"></span>
+          </div>
+        </router-link>
+      </g-title>
     </div>
     <g-footer-nav :active="0"></g-footer-nav>
   </div>

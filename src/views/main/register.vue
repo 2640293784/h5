@@ -2,25 +2,14 @@
   <div class="page-container">
     <h1>注册</h1>
     <form autocomplete="off">
-      <input type="number"
-             v-model="username"
-             placeholder="手机号">
-      <input type="password"
-             v-model="password"
-             placeholder="密码">
-      <input type="password"
-             v-model="psd"
-             placeholder="确认密码">
-      <button type="button"
-              @click="Submit">注册</button>
+      <input type="number" v-model="username" placeholder="手机号">
+      <input type="password" v-model="password" placeholder="密码">
+      <input type="password" v-model="psd" placeholder="确认密码">
+      <button type="button" @click="Submit">注册</button>
     </form>
     <div class="connect">
       <router-link to="/login">已有账号，马上登陆</router-link>
     </div>
-    <mt-popup v-model="popup"
-              position="top"
-              class="popup"
-              :modal="false">注册成功</mt-popup>
   </div>
 </template>
 
@@ -32,24 +21,20 @@ export default {
     return {
       username: "",
       password: "",
-      psd: "",
-      popup: false
+      psd: ""
     }
   },
   methods: {
-    Submit () {
-      if (this.username == "")
-      {
+  async Submit () {
+      if (this.username == ""){
         this.$toast('请输入用户名');
         return false;
       }
-      if (this.password == "")
-      {
+      if (this.password == ""){
         this.$toast('请输入密码');
         return false;
       }
-      if (this.psd != this.password)
-      {
+      if (this.psd != this.password){
         this.$toast('两次密码输入不一致');
         return false;
       }
@@ -57,16 +42,17 @@ export default {
         username: this.username,
         password: this.password
       }
-      userRegister(params).then(res => {
-        const { message, isMatch } = res.data;
-        if (isMatch)
-        {
-          this.$router.push("/login");
-        } else
-        {
-          this.toast(message);
-        }
-      });
+      let res =await userRegister(params)
+      if(res){
+        this.$notify({
+          type:'success',
+          message:'注册成功',
+          duration:500,
+          onClose: ()=> {
+            this.$router.push("/login")
+          }
+        });
+      }
     }
   }
 }
@@ -95,27 +81,19 @@ form {
 }
 
 input {
-  width: 13.33rem;
+  width: 100%;
   height: 1.87rem;
   margin-top: 1.11rem;
   padding: 0 0.67rem;
-  background: #2d2d2d; /* browsers that don't support rgba */
   background: rgba(45, 45, 45, 0.15);
-  -moz-border-radius: 0.27rem;
-  -webkit-border-radius: 0.27rem;
   border-radius: 0.27rem;
   border: 1px solid #3d3d3d; /* browsers that don't support rgba */
   border: 1px solid rgba(255, 255, 255, 0.15);
-  -moz-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1) inset;
-  -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1) inset;
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1) inset;
   font-size: 0.62rem;
   color: #fff;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  -o-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  -webkit-transition: all 0.2s;
-  -ms-transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 input:-moz-placeholder {
@@ -130,29 +108,19 @@ input::-webkit-input-placeholder {
 
 input:focus {
   outline: none;
-  -moz-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1) inset,
-    0 2px 7px 0 rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1) inset,
-    0 2px 7px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1) inset,
     0 2px 7px 0 rgba(0, 0, 0, 0.2);
 }
 
 button {
   cursor: pointer;
-  width: 13.33rem;
+  width: 100%;
   height: 1.87rem;
   margin-top: 1.11rem;
   padding: 0;
   background: #ef4300;
-  -moz-border-radius: 0.27rem;
-  -webkit-border-radius: 0.27rem;
   border-radius: 0.27rem;
   border: 1px solid #ff730e;
-  -moz-box-shadow: 0 0.67rem 1.33rem 0 rgba(255, 255, 255, 0.25) inset,
-    0 2px 7px 0 rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: 0 0.67rem 1.33rem 0 rgba(255, 255, 255, 0.25) inset,
-    0 2px 7px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 0.67rem 1.33rem 0 rgba(255, 255, 255, 0.25) inset,
     0 2px 7px 0 rgba(0, 0, 0, 0.2);
   font-family: "PT Sans", Helvetica, Arial, sans-serif;
@@ -160,29 +128,17 @@ button {
   font-weight: 700;
   color: #fff;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  -o-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  -webkit-transition: all 0.2s;
-  -ms-transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 button:hover {
-  -moz-box-shadow: 0 0.67rem 1.33rem 0 rgba(255, 255, 255, 0.15) inset,
-    0 2px 7px 0 rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: 0 0.67rem 1.33rem 0 rgba(255, 255, 255, 0.15) inset,
-    0 2px 7px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 0.67rem 1.33rem 0 rgba(255, 255, 255, 0.15) inset,
     0 2px 7px 0 rgba(0, 0, 0, 0.2);
 }
 
 button:active {
-  -moz-box-shadow: 0 0.67rem 1.33rem 0 rgba(255, 255, 255, 0.15) inset,
-    0 2px 7px 0 rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: 0 0.67rem 1.33rem 0 rgba(255, 255, 255, 0.15) inset,
-    0 2px 7px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.1) inset,
     0 1px 4px 0 rgba(0, 0, 0, 0.1);
-
   border: 0px solid #ef4300;
 }
 .connect {
