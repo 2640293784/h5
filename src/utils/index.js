@@ -5,31 +5,31 @@ const _is = Object.prototype.toString
  * 字符串
  */
 export function isString(o) {
-  return _is(o) === '[object String]'
+  return _is.call(o) === '[object String]'
 }
 /**
  * 数字
  */
 export function isNumber(o) {
-  return _is(o) === '[object Number]'
+  return _is.call(o) === '[object Number]'
 }
 /**
  * 函数
  */
 export function isFun(o) {
-  return _is(o) === '[object Function]'
+  return _is.call(o) === '[object Function]'
 }
 /**
  * 数组
  */
 export function isArray(o) {
-  return _is(o) === '[object Array]'
+  return _is.call(o) === '[object Array]'
 }
 /**
  * 对象
  */
 export function isObj(o) {
-  return _is(o) === '[object Object]'
+  return _is.call(o) === '[object Object]'
 }
 /**
  * 手机号码

@@ -36,21 +36,23 @@ export const homeCarousel = data => axios({
   loading:false,
   data: data || {}
 })
-export const list = data => axios({
+//首页电影列表
+export const getMovieList = data => axios({
   method: 'get',
-  url: "/api/index/index_1.php",
+  url: "/api/product/getMovieList",
+  loading:false,
   data: data || {}
 })
-export const swiper = data => axios({
+//首页生日列表
+export const getBirthList = data => axios({
   method: 'get',
-  url: "/api/index/swiper.php",
+  url: "/api/product/getBirthList",
+  loading:false,
   data: data || {}
 })
-
-//分类
-export const classify = data => axios({
+export const getFruitList = data => axios({
   method: 'get',
-  url: '/api/goods/getClassify',
+  url: "/api/product/getFruitList",
   data: data || {}
 })
 export const classList = data => axios({
@@ -58,6 +60,12 @@ export const classList = data => axios({
   url: "/api/goods/getGoods",
   data: data || {},
   loading: false
+})
+//分类
+export const classify = data => axios({
+  method: 'get',
+  url: '/api/goods/getClassify',
+  data: data || {}
 })
 //详情
 export const classDeails = data => axios({

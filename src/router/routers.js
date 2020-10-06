@@ -59,11 +59,47 @@ const routers = [
     }
   },
   {
+    path: '/birthday',
+    component: _import('birthday'),
+    name: 'birthday',
+    meta: {
+      title: '生日专区',
+      show:true
+    }
+  },
+  {
+    path: '/fruit',
+    component: _import('fruit'),
+    name: 'fruit',
+    meta: {
+      title: '果园飘香',
+      show:true
+    }
+  },
+  {
+    path: '/selection',
+    component: _import('selection'),
+    name: 'selection',
+    meta: {
+      title: '应季甄选',
+      show:true
+    }
+  },
+  {
     path: '/users',
     component: _import('users'),
     name: 'users',
     meta: {
       title: '个人中心'
+    }
+  },
+  {
+    path: '/users/information',
+    component: _import('users/information'),
+    name: 'usersInformation',
+    meta: {
+      title: '基本信息',
+      show:true
     }
   },
   {

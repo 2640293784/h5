@@ -4,8 +4,13 @@
       <span class="sprite-icon"></span>
       <h2>{{title}}</h2>
     </div>
-    <div class="g-title-right">
-      <slot></slot>
+    <div class="g-title-right" v-if="link">
+      <router-link :to="to">
+        <div class="secskill-more">
+          <span>查看更多</span>
+          <van-icon class="fr" name="arrow" />
+        </div>
+      </router-link>
     </div>
 	</div>
 </template>
@@ -17,7 +22,15 @@
 			title: {
 				type:String,
 				default:''
-			}
+      },
+      link:{
+        type:Boolean,
+        default:false
+      },
+      to:{
+        type:String,
+        default:''
+      }
 		},
 		data(){
 			return{}
@@ -25,7 +38,7 @@
 	}
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .g-title-wrap{
 	width: 100%;
 	height: 2rem;
@@ -36,10 +49,16 @@
   .g-title-left{
     display: flex;
   }
+  .secskill-more{
+    line-height: 2rem;
+  }
   .g-title-right{
     position: relative;
-    &::after{
-content: '>';
+    a{
+      color: #989898;
+      i{
+        line-height: 2rem;
+      }
     }
   }
   h2{

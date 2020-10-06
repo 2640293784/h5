@@ -27,35 +27,64 @@
         </van-row>
       </div>
       <van-notice-bar left-icon="volume-o" text="夏季炎热签收水果前请确认"/>
-      <g-title title="最新上映">
-        <router-link to="/">
-          <div class="secskill-more">
-            <span>查看更多</span>
-            <span class="icon"></span>
+      <g-title title="最新上映" link to="/mivie"></g-title>
+      <movie-list :list="movieData"></movie-list>
+      <g-title title="生日专区" link to="/birthday"></g-title>
+      <div class="epecial-area">
+        <div class="epecial-area-left">
+          <router-link to="/details/1">
+            <img src="http://www.ruiyunzhushou.com/images/birthday/fuirt.png" alt="">
+          </router-link>
+        </div>
+        <div>
+            <router-link to="/details/1">
+              <img src="http://www.ruiyunzhushou.com/images/birthday/friut2.png" alt="">
+            </router-link>
+          <div class="epecial-area-right">
+            <div>
+              <router-link to="/details/1">
+                <img src="http://www.ruiyunzhushou.com/images/birthday/birth3.png" alt="">
+              </router-link>
+            </div>
+            <div>
+              <router-link to="/details/1">
+                <img src="http://www.ruiyunzhushou.com/images/birthday/birth3-07.png" alt="">
+              </router-link>
+            </div> 
           </div>
-        </router-link>
-      </g-title>
-      <movie-list></movie-list>
-      <g-title title="生日专区">
-        <router-link to="/">
-          <div class="secskill-more">
-            <span>查看更多</span>
-            <span class="icon"></span>
-          </div>
-        </router-link>
-      </g-title>
+        </div>
+      </div>
+      <g-title title="果园飘香" link to="/fruit"></g-title>
+      <div class="epecial-area">
+        <div class="epecial-area-left">
+          <router-link to="/details/1">
+            <img src="http://www.ruiyunzhushou.com/images/furit/fuirt-08.png" alt="">
+          </router-link>
+        </div>
+        <div>
+          <router-link to="/details/1">
+            <img src="http://www.ruiyunzhushou.com/images/furit/friut2-09.png" alt="">
+          </router-link>
+          <router-link to="/details/1">
+            <img src="http://www.ruiyunzhushou.com/images/furit/friut2-10.png" alt="">
+          </router-link>
+        </div>
+      </div>
     </div>
     <g-footer-nav :active="0"></g-footer-nav>
   </div>
 </template>
 <script>
-import { homeCarousel } from '@/api'
+import { homeCarousel, getMovieList, getBirthList, getFruitList } from '@/api'
 import MovieList from './movie-list'
 export default {
   name: 'main',
   data () {
     return {
       swiperData: [],
+      movieData: [],
+      birthData: [],
+      fruitData: [],
       list:[
     	     {
     	     	text:"积分商城",
@@ -70,7 +99,7 @@ export default {
     	     {
     	     	text:"生日专区",
     	     	icon:require("@assets/img/banner/3.png"),
-    	     	href:'/cake'
+    	     	href:'/birthday'
     	     },
     	     {
     	     	text:"果园飘香",
@@ -85,7 +114,7 @@ export default {
     	     {
     	     	text:"应季甄选",
     	     	icon:require("@assets/img/banner/6.png"),
-    	     	href:'/season'
+    	     	href:'/selection'
     	     },
     	     {
     	     	text:"大牌手机",
@@ -102,12 +131,42 @@ export default {
   },
   components:{ MovieList },
   mounted () {
-    homeCarousel().then(res=>{
-      const { data,status } = res
-      if(status === 200){
-        this.swiperData = data;
-      }
+    this.$toast.loading({
+      duration: 0
+    });
+    Promise.all([this.getCarousel(),this.getMovie()],this.getBirth(),this.getFruit()).then(()=>{
+      this.$toast.clear()
+    }).catch(()=>{
+      this.$toast.clear()
     })
+},
+methods:{
+  //获取轮播图
+  async getCarousel () {
+    let res =await homeCarousel()
+    if(res){
+        this.swiperData = res || [];
+    }
+  },
+  //获取电影列表
+  async getMovie () {
+    let res =await getMovieList()
+    if(res){
+        this.movieData = res.data || []
+    }
+  },
+  async getBirth () {
+    let res =await getBirthList()
+    if(res){
+        this.birthData = res.data || []
+    }
+  },
+  async getFruit () {
+    let res = await getFruitList()
+    if(res){
+        this.fruitData = res.data || []
+    }
+  }
 }
 }
 </script>
@@ -128,12 +187,6 @@ export default {
 	height: .71rem;
 	background-position: -.18rem -6.49rem;
 	margin-top:15px;
-}
-.secskill-more{
-	padding-right: .71rem;
-	height: 2rem;
-	line-height: 2rem;
-  font-size: .71rem;
 }
 .nav{
   padding: .53rem 0;
@@ -184,4 +237,13 @@ header{
     }
   }
 }
+  .epecial-area{
+    display: flex;
+  }
+  .epecial-area-left{
+    width: 86.04%;
+  }
+  .epecial-area-right{
+    display: flex;
+  }
 </style>

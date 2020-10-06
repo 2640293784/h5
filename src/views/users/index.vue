@@ -13,6 +13,12 @@
 				<span class="my_txt">余额：{{formData.balance}}积分</span>
 			</div>
 		</div>
+    <van-cell is-link to="/users/information">
+      <div class="user-cell">
+        <img src="@img/user/main_04.png">
+        <span>基本信息</span>
+      </div>
+    </van-cell>
     <van-cell is-link to="/users/order">
       <div class="user-cell">
         <img src="@img/user/main_04.png">

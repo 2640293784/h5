@@ -92,6 +92,7 @@ export default {
 <style lang="less" scoped>
   .pull-refresh{
     width: 100%;
+    height: 100%;
     overflow: hidden;
   }
   .pull-refresh-container{

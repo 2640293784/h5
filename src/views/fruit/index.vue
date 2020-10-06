@@ -1,61 +1,66 @@
 <template>
-  <div class="classify">
-    <div class="classify-row">
-      <van-sidebar v-model="activeKey" @change="sidebarChange">
-        <van-sidebar-item title="生日专区" />
-        <van-sidebar-item title="婴儿用品" />
-        <van-sidebar-item title="大牌手机" />
-        <van-sidebar-item title="美妆护肤" />
-        <van-sidebar-item title="运动器材" />
-        <van-sidebar-item title="果园飘香" />
-        <van-sidebar-item title="美食天下" />
-        <van-sidebar-item title="文玩空间" />
-      </van-sidebar>
+  <div class="fruit">
+    <img src="@img/fruit_03.png" alt="">
+    <van-dropdown-menu>
+      <van-dropdown-item v-model="value1" :options="option1" />
+      <van-dropdown-item v-model="value2" :options="option2"/>
+    </van-dropdown-menu>
+    <div class="fruit-list">
       <g-pull-refresh
-      :number="3"
-      :pullLoading="loading"
-      :finished="finished"
-      :refreshing="refreshing"
-      :list="list"
-      @pull-down="pullList"
-      @drop-down="dropList"
-      >
-        <template #child="{ item }" >
-          <router-link class="col-item" :to="`/details/${item.id}`">
-            <img :src="item.url" />
-            <p>{{item.text}}</p>
-          </router-link>
-        </template> 
-      </g-pull-refresh>
+        :number="2"
+        :pullLoading="loading"
+        :finished="finished"
+        :refreshing="refreshing"
+        :list="list"
+        @pull-down="pullList"
+        @drop-down="dropList"
+        >
+          <template #child="{ item }" >
+            <router-link class="col-item" :to="`/details/${item.id}`">
+              <img :src="item.url" />
+              <p>{{item.text}}</p>
+            </router-link>
+          </template> 
+        </g-pull-refresh>
     </div>
-    <g-footer-nav :active="1"></g-footer-nav>
   </div>
 </template>
 <script>
 export default {
-  name: 'classify',
+  name:'fruit',
   data () {
     return {
       loading:false,
       refreshing:false,
       finished:false,
-      index:0,
-      activeKey:0,
+      value1:0,
+      value2:0,
+      option1: [
+        { text: '全部商品', value: 0 },
+        { text: '新款商品', value: 1 },
+        { text: '活动商品', value: 2 },
+      ],
+      option2: [
+        { text: '默认排序', value: 0 },
+        { text: '按销量', value: 1 },
+        { text: '按价格从高到低', value: 2 },
+        { text: '按价格从低到高', value: 3 }
+      ],
       list:[{
         id:1,
-        url:'http://www.ruiyunzhushou.com/images/jifen/sp.png',
+        url:'http://www.ruiyunzhushou.com/images/friut/fruit_16.png',
         text:'淘宝'
       },{
         id:2,
-        url:'http://www.ruiyunzhushou.com/images/jifen/sp.png',
+        url:'http://www.ruiyunzhushou.com/images/friut/fruit_20.png',
         text:'淘宝'
       },{
         id:3,
-        url:'http://www.ruiyunzhushou.com/images/jifen/sp.png',
+        url:'http://www.ruiyunzhushou.com/images/friut/fruit_16.png',
         text:'淘宝'
       },{
         id:1,
-        url:'http://www.ruiyunzhushou.com/images/jifen/sp.png',
+        url:'http://www.ruiyunzhushou.com/images/friut/fruit_16.png',
         text:'淘宝'
       },{
         id:1,
@@ -113,10 +118,6 @@ export default {
     }
   },
   methods:{
-    sidebarChange(value){
-      this.$toast('提示文案');
-      console.log(value)
-    },
     pullList () {
       this.index++
       setTimeout(() => {
@@ -142,19 +143,12 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-  .classify{
-    height: 100%;
-    padding-bottom: 2.2rem;
-  }
-  .classify-row{
-    display: flex;
-    height: 100%;
+  .fruit{
+    height: calc(100% - 2rem);
     overflow: hidden;
   }
-  .col-item{
-    text-align: center;
-    p{
-      padding: .44rem 0;
-    }
+  .fruit-list{
+    height: calc(100% - 9rem);
+    overflow: hidden;
   }
 </style>

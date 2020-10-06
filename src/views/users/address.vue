@@ -34,7 +34,7 @@ export default {
   name:'userAddress',
   data() {
     return {
-      chosenAddressId: 1,
+      chosenAddressId: 0,
       defaultDetails:{},
       show:false,
       areaList,
@@ -51,7 +51,8 @@ export default {
       let res= await getAddress()
       if(res&&res.data){
       this.list = res.data.map(item=>{
-        item.isDefault = item.checked
+        item.checked&&(this.chosenAddressId=item.id)
+        //item.isDefault = item.checked
         item.address = `${item.province}${item.city}${item.county}${item.detail_locatoin}`
         item.postalCode = item.postal_code
         return item
@@ -130,7 +131,7 @@ export default {
       }
     },
     selectChenge ({ id }) {
-      deleteAddress({id})
+      checkoutAdress({id})
     }
   }
 }

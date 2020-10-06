@@ -16,12 +16,22 @@
       </van-card>
     </div>
   </div>
-  <div>
-    <van-row>
-      <van-col span="12" class="user-like-col">span: 8</van-col>
-      <van-col span="12" class="user-like-col">span: 8</van-col>
-    </van-row>
-  </div>
+  <van-row>
+    <van-col :span="12" class="user-like-col">
+      <div class="user-like-container">
+        <img src="http://www.ruiyunzhushou.com/images/jifen/sp.png">
+        <p>迷你智能电饭煲HYFG-1016</p>
+        <p class="int_color">86.0积分</p>
+      </div>
+    </van-col>
+    <van-col :span="12" class="user-like-col">
+      <div class="user-like-container">
+        <img src="http://www.ruiyunzhushou.com/images/jifen/sp.png">
+        <p>迷你智能电饭煲HYFG-1016</p>
+        <p class="int_color">86.0积分</p>
+      </div>
+    </van-col>
+  </van-row>
 </div>
 </template>
 <script>
@@ -68,6 +78,10 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+ .user-order{
+   height: calc(100% - 46px);
+   overflow-y: auto;
+ }
  .user-order-top{
    background: white;
    display: flex;
@@ -79,6 +93,20 @@ export default {
    margin: .44rem 0;
  }
  .user-like-col{
-   background: red;
+   margin-bottom: .5rem;
+   &:nth-child(odd){
+    padding-right: .25rem;
+   }
+  &:nth-child(even){
+    padding-left: .25rem;
+   }
+ }
+ .user-like-container{
+   background-color: white;
+   p{
+    font-size: 0.6rem;
+    line-height: 0.9rem;
+    height: auto;
+   }
  }
 </style>
