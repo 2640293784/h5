@@ -145,7 +145,7 @@ methods:{
   async getCarousel () {
     let res =await homeCarousel()
     if(res){
-        this.swiperData = res || [];
+        this.swiperData = res.data || [];
     }
   },
   //获取电影列表

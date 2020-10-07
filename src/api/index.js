@@ -61,6 +61,17 @@ export const classList = data => axios({
   data: data || {},
   loading: false
 })
+//获取类型
+export const getTypeList = data => axios({
+  method: 'get',
+  url: '/api/product/getTypeList',
+  data: data || {}
+})
+export const getProductByTypeId = data =>axios({
+  method: 'get',
+  url: '/api/product/getProductByTypeId',
+  params: data || {}
+})
 //分类
 export const classify = data => axios({
   method: 'get',

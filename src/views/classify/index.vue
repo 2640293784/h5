@@ -2,14 +2,7 @@
   <div class="classify">
     <div class="classify-row">
       <van-sidebar v-model="activeKey" @change="sidebarChange">
-        <van-sidebar-item title="生日专区" />
-        <van-sidebar-item title="婴儿用品" />
-        <van-sidebar-item title="大牌手机" />
-        <van-sidebar-item title="美妆护肤" />
-        <van-sidebar-item title="运动器材" />
-        <van-sidebar-item title="果园飘香" />
-        <van-sidebar-item title="美食天下" />
-        <van-sidebar-item title="文玩空间" />
+        <van-sidebar-item :title="item.name" v-for="item in typeData" :key="item.id" />
       </van-sidebar>
       <g-pull-refresh
       :number="3"
@@ -32,6 +25,7 @@
   </div>
 </template>
 <script>
+import { getTypeList,getProductByTypeId } from '@/api'
 export default {
   name: 'classify',
   data () {
@@ -39,6 +33,7 @@ export default {
       loading:false,
       refreshing:false,
       finished:false,
+      typeData: [],
       index:0,
       activeKey:0,
       list:[{
@@ -112,9 +107,22 @@ export default {
       }]
     }
   },
+  mounted () {
+    this.getTypeData()
+    const { type } = this.$route.query
+    this.activeKey = type*1 || 0
+  },
   methods:{
+    async getClassify () {
+      let res =await getProductByTypeId({ typeId:this.activeKey, start:0, pageSize:18 })
+    },
+    async getTypeData () {
+      let res = await getTypeList()
+      if(res){
+        this.typeData = res.data|| []
+      }
+    },
     sidebarChange(value){
-      this.$toast('提示文案');
       console.log(value)
     },
     pullList () {

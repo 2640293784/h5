@@ -1,5 +1,5 @@
-//const host = 'http://192.168.1.100:3000'
-const host = 'http://192.168.1.102:3001'
+const host = 'http://192.168.1.100:3001'
+//const host = 'http://192.168.1.102:3001'
 const porxyTable = {
   '/api': {
     target: host, //设置调用接口域名和端口号别忘了加http
