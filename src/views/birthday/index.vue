@@ -71,14 +71,14 @@ export default {
   },
   mounted () {
     this.swiperData = [
-        {
-          url:"http://www.ruiyunzhushou.com/images/birthday/banner3.png"
-        },{
-          url:'http://www.ruiyunzhushou.com/images/birthday/banner.jpg'
-        },{
-          url:'http://www.ruiyunzhushou.com/images/birthday/banner1.png'
-        }
-      ]
+      {
+        url: 'http://www.ruiyunzhushou.com/images/birthday/banner3.png'
+      }, {
+        url: 'http://www.ruiyunzhushou.com/images/birthday/banner.jpg'
+      }, {
+        url: 'http://www.ruiyunzhushou.com/images/birthday/banner1.png'
+      }
+    ]
   }
 }
 </script>
@@ -99,7 +99,7 @@ export default {
    width: 64.09%;
    margin-left: 1%;
  }
- .bitrhday-divider{ 
+ .bitrhday-divider{
    border-color: #07c160;
    margin: .5rem 0;
    color: #666;

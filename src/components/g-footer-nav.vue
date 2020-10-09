@@ -20,31 +20,31 @@
 <!--tabbar-->
 </template>
 <script>
-	export default{
-		name:'FooterNav',
-		props:{
-			active:{
-				type:String,
-				default:0
-			}
-		},
-		data(){
-			return{
-        newActive:this.active
-      }
-		},
-    methods:{
-      onChange(val){
-        const routerList = ['/','/classify','/shoppingCart','/users']
-        this.$router.push(routerList[val])
-      }
+export default {
+  name: 'FooterNav',
+  props: {
+    active: {
+      type: String,
+      default: 0
     }
-	}
+  },
+  data () {
+    return {
+      newActive: this.active
+    }
+  },
+  methods: {
+    onChange (val) {
+      const routerList = ['/', '/classify', '/shoppingCart', '/users']
+      this.$router.push(routerList[val])
+    }
+  }
+}
 </script>
 <style lang="less" scoped>
 .tabbar{
-	box-shadow: 0 -0.13rem 0.22rem #ccc;
-	 height: 2rem;
+  box-shadow: 0 -0.13rem 0.22rem #ccc;
+  height: 2rem;
 }
 .tabbar-item__text{
   text-align: center;

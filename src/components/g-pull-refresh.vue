@@ -6,7 +6,7 @@
       </div>
     </van-overlay>
     <van-pull-refresh
-      v-model="refreshing" 
+      v-model="refreshing"
       class="pull-refresh-container"
       :success-text="success-text"
       @refresh="onRefresh">
@@ -30,64 +30,64 @@
 </template>
 <script>
 export default {
-  name:'pull-refresh',
-  props:{
-  finishedText:{
-    type:String,
-    default:'没有更多了'
+  name: 'pull-refresh',
+  props: {
+    finishedText: {
+      type: String,
+      default: '没有更多了'
+    },
+    noText: {
+      type: String,
+      default: '暂无内容'
+    },
+    successText: {
+      type: String,
+      default: ''
+    },
+    loadingText: {
+      type: String,
+      default: '加载中...'
+    },
+    finished: false, // 判断时候否加载完毕
+    list: {
+      type: Array,
+      default: () => []
+    },
+    loading: { // 全局loading
+      type: Boolean,
+      default: false
+    },
+    pullLoading: { // 下拉加载loading
+      type: Boolean,
+      default: false
+    },
+    refreshing: { // 上拉加载loading
+      type: Boolean,
+      default: false
+    },
+    number: {
+      type: Number,
+      default: 1
+    }
   },
-  noText:{
-    type:String,
-    default:'暂无内容'
-  },
-  successText:{
-    type:String,
-    default:''
-  },
-  loadingText:{
-    type:String,
-    default:'加载中...'
-  },
-  finished: false,//判断时候否加载完毕
-  list:{
-    type:Array,
-    default:()=>[]
-  },
-  loading:{//全局loading
-    type:Boolean,
-    default:false
-  },
-  pullLoading:{//下拉加载loading
-    type:Boolean,
-    default:false
-  },
-  refreshing:{//上拉加载loading
-    type:Boolean,
-    default:false
-  },
-  number:{
-    type:Number,
-    default:1
-  }
-  },
-  data() {
+  data () {
     return {
-    };
+    }
   },
   mounted () {
-    let height = this.$refs.text.$parent.$el.offsetHeight
-    this.$refs.text.$el.style.height=`${height}px`
+    const height = this.$refs.text.$parent.$el.offsetHeight
+    this.$refs.text.$el.style.height = `${height}px`
   },
   methods: {
-    onLoad() {
+    onLoad () {
       this.$emit('pull-down')
     },
-    onRefresh() {
+    onRefresh () {
       this.$emit('drop-down')
       this.refreshing = false
-    },
-  },
-};
+    }
+  }
+}
 </script>
 <style lang="less" scoped>
   .pull-refresh{

@@ -55,7 +55,7 @@ const routers = [
     name: 'details',
     meta: {
       title: '产品详情',
-      show:true
+      show: true
     }
   },
   {
@@ -64,7 +64,7 @@ const routers = [
     name: 'birthday',
     meta: {
       title: '生日专区',
-      show:true
+      show: true
     }
   },
   {
@@ -73,7 +73,7 @@ const routers = [
     name: 'fruit',
     meta: {
       title: '果园飘香',
-      show:true
+      show: true
     }
   },
   {
@@ -82,7 +82,7 @@ const routers = [
     name: 'selection',
     meta: {
       title: '应季甄选',
-      show:true
+      show: true
     }
   },
   {
@@ -99,7 +99,7 @@ const routers = [
     name: 'usersInformation',
     meta: {
       title: '基本信息',
-      show:true
+      show: true
     }
   },
   {
@@ -108,7 +108,7 @@ const routers = [
     name: 'usersAddress',
     meta: {
       title: '收货地址',
-      show:true
+      show: true
     }
   },
   {
@@ -117,7 +117,7 @@ const routers = [
     name: 'usersOrder',
     meta: {
       title: '我的订单',
-      show:true
+      show: true
     }
   },
   {
@@ -126,7 +126,7 @@ const routers = [
     name: 'usersRecharge',
     meta: {
       title: '账户充值',
-      show:true
+      show: true
     }
   },
   {

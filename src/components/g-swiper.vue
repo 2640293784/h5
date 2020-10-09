@@ -17,9 +17,9 @@ export default {
       type: Array,
       default: () => []
     },
-    lazyLoad:{
-      type:Boolean,
-      default:true
+    lazyLoad: {
+      type: Boolean,
+      default: true
     },
     autoplay: {
       type: Number,
@@ -30,25 +30,25 @@ export default {
       default: 0
     }
   },
-  watch:{
-    list:{
-      handler(newVal){
-        this.newList = newVal.map(item=>{
-          return isObj(item)? item :{ url:item }
+  watch: {
+    list: {
+      handler (newVal) {
+        this.newList = newVal.map(item => {
+          return isObj(item) ? item : { url: item }
         })
       },
-      deep:true,
-      immediate:true
+      deep: true,
+      immediate: true
     }
   },
   data () {
     return {
-      newList:[]
+      newList: []
     }
   },
-  methods:{
-    swiperItem (index,item) {
-      this.$emit('touch',index,item)
+  methods: {
+    swiperItem (index, item) {
+      this.$emit('touch', index, item)
     }
   }
 }

@@ -8,16 +8,16 @@
 </template>
 <script>
 export default {
-  name:'app',
-  data:{
-    isTitle:false
+  name: 'app',
+  data: {
+    isTitle: false
   },
-  watch:{
-    '$route':{
-      handler(router){
+  watch: {
+    $route: {
+      handler (router) {
         this.isTitle = router.meta.show || false
       },
-      immediate:true
+      immediate: true
     }
   }
 }

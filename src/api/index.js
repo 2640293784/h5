@@ -1,145 +1,153 @@
-import axios from '../utils/httpRequest'
-//用户
+import axios from '@utils/httpRequest'
+// 用户
 export const userInfo = data => axios({
   method: 'get',
-  url: "/api/user/getIntergral",
+  url: '/api/user/getIntergral',
   data: data || {}
 })
-//用户充值
+// 用户充值
 export const userRecharge = data => axios({
-  method: "post",
-  url: "/api/user/rechargeIntergral",
+  method: 'post',
+  url: '/api/user/rechargeIntergral',
   data: data || {}
 })
-//用户注册
+// 用户注册
 export const userRegister = data => axios({
-  method: "post",
-  url: "/api/user/signUp",
+  method: 'post',
+  url: '/api/user/signUp',
   data: data || {}
 })
-//用户登录
+// 用户登录
 export const userLogin = data => axios({
-  method: "post",
-  url: "/api/user/signIn",
+  method: 'post',
+  url: '/api/user/signIn',
   data: data || {}
 })
-//找回密码
+// 找回密码
 export const password = data => axios({
-  method: "post",
-  url: "/api/user/password",
+  method: 'post',
+  url: '/api/user/password',
   data: data || {}
 })
-//首页
+// 首页
 export const homeCarousel = data => axios({
   method: 'get',
-  url: "/api/home/carouser",
-  loading:false,
+  url: '/api/home/carouser',
+  loading: false,
   data: data || {}
 })
-//首页电影列表
+// 首页电影列表
 export const getMovieList = data => axios({
   method: 'get',
-  url: "/api/product/getMovieList",
-  loading:false,
+  url: '/api/product/getMovieList',
+  loading: false,
   data: data || {}
 })
-//首页生日列表
+// 首页生日列表
 export const getBirthList = data => axios({
   method: 'get',
-  url: "/api/product/getBirthList",
-  loading:false,
+  url: '/api/product/getBirthList',
+  loading: false,
   data: data || {}
 })
 export const getFruitList = data => axios({
   method: 'get',
-  url: "/api/product/getFruitList",
+  url: '/api/product/getFruitList',
   data: data || {}
 })
 export const classList = data => axios({
-  method: "post",
-  url: "/api/goods/getGoods",
+  method: 'post',
+  url: '/api/goods/getGoods',
   data: data || {},
   loading: false
 })
-//获取类型
+// 获取类型
 export const getTypeList = data => axios({
   method: 'get',
   url: '/api/product/getTypeList',
   data: data || {}
 })
-export const getProductByTypeId = data =>axios({
+export const getProductByTypeId = data => axios({
   method: 'get',
   url: '/api/product/getProductByTypeId',
   params: data || {}
 })
-//分类
+// 分类
 export const classify = data => axios({
   method: 'get',
   url: '/api/goods/getClassify',
   data: data || {}
 })
-//详情
+// 详情
 export const classDeails = data => axios({
-  method: "get",
-  url: "/api/goods/getGoodDetails",
+  method: 'get',
+  url: '/api/goods/getGoodDetails',
   params: data || {}
 })
-//购物车shopping
-export const shopping = '/app/api/shopping/shopping.php';//获取
-export const addShopping = '/app/api/shopping/shopping_2.php';//新增
-export const deleteShopping = '/app/api/shopping/delete.php';//删除
-//图片上传
+// 购物车shopping
+export const shopping = '/app/api/shopping/shopping.php'// 获取
+export const addShopping = '/app/api/shopping/shopping_2.php'// 新增
+export const deleteShopping = '/app/api/shopping/delete.php'// 删除
+// 图片上传
 export const uploadFile = data => axios({
   method: 'post',
   url: 'api/upload',
   data: data || {},
-  'Content-Type': 'multipart/form-data',
+  'Content-Type': 'multipart/form-data'
 })
-//修改用户资料
+
+// 修改用户资料
 export const updateUser = data => axios({
   method: 'post',
-  url: "api/user/updateUser",
+  url: 'api/user/updateUser',
   data: data || {}
 })
-//积分中心
+
+// 积分中心
 export const integSwiper = data => axios({
-  method: "get",
-  url: "/api/integ/swiper.php",
+  method: 'get',
+  url: '/api/integ/swiper.php',
   data: data || {}
 })
+
 export const integList = data => axios({
-  method: "get",
-  url: "/api/integ/recommend.php",
+  method: 'get',
+  url: '/api/integ/recommend.php',
   data: data || {}
 })
-//个人中心
-//获取收货地址
+
+// 个人中心
+// 获取收货地址
 export const getAddress = data => axios({
   method: 'get',
-  url: "/api/user/getAdress",
+  url: '/api/user/getAdress',
   data: data || {}
 })
-//添加收货地址
+
+// 添加收货地址
 export const addAddress = data => axios({
   method: 'post',
-  url: "/api/user/addAdress",
+  url: '/api/user/addAdress',
   data: data || {}
 })
-//修改收货地址
+
+// 修改收货地址
 export const updateAdress = data => axios({
   method: 'post',
-  url: "/api/user/updateAdress",
+  url: '/api/user/updateAdress',
   data: data || {}
 })
-//删除收货地址
+
+// 删除收货地址
 export const deleteAddress = data => axios({
   method: 'post',
-  url: "/api/user/delAdress",
+  url: '/api/user/delAdress',
   data: data || {}
 })
-//删除收货地址
+
+// 删除收货地址
 export const checkoutAdress = data => axios({
   method: 'post',
-  url: "/api/user/checkoutAdress",
+  url: '/api/user/checkoutAdress',
   data: data || {}
 })

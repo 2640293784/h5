@@ -20,25 +20,25 @@
               <img :src="item.url" />
               <p>{{item.text}}</p>
             </router-link>
-          </template> 
+          </template>
         </g-pull-refresh>
     </div>
   </div>
 </template>
 <script>
 export default {
-  name:'selection',
+  name: 'selection',
   data () {
     return {
-      loading:false,
-      refreshing:false,
-      finished:false,
-      value1:0,
-      value2:0,
+      loading: false,
+      refreshing: false,
+      finished: false,
+      value1: 0,
+      value2: 0,
       option1: [
         { text: '全部商品', value: 0 },
         { text: '新款商品', value: 1 },
-        { text: '活动商品', value: 2 },
+        { text: '活动商品', value: 2 }
       ],
       option2: [
         { text: '默认排序', value: 0 },
@@ -46,89 +46,89 @@ export default {
         { text: '按价格从高到低', value: 2 },
         { text: '按价格从低到高', value: 3 }
       ],
-      list:[{
-        id:1,
-        url:'http://www.ruiyunzhushou.com/images/friut/fruit_16.png',
-        text:'淘宝'
-      },{
-        id:2,
-        url:'http://www.ruiyunzhushou.com/images/friut/fruit_20.png',
-        text:'淘宝'
-      },{
-        id:3,
-        url:'http://www.ruiyunzhushou.com/images/friut/fruit_16.png',
-        text:'淘宝'
-      },{
-        id:1,
-        url:'http://www.ruiyunzhushou.com/images/friut/fruit_16.png',
-        text:'淘宝'
-      },{
-        id:1,
-        url:'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text:'淘宝'
-      },{
-        id:1,
-        url:'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text:'淘宝'
-      },{
-        id:1,
-        url:'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text:'淘宝'
-      },{
-        id:1,
-        url:'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text:'淘宝'
-      },{
-        id:1,
-        url:'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text:'淘宝'
-      },{
-        id:1,
-        url:'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text:'淘宝'
-      },{
-        id:1,
-        url:'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text:'淘宝'
-      },{
-        id:1,
-        url:'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text:'淘宝'
-      },{
-        id:1,
-        url:'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text:'淘宝'
-      },{
-        id:1,
-        url:'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text:'淘宝'
-      },{
-        id:1,
-        url:'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text:'淘宝'
-      },{
-        id:1,
-        url:'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text:'淘宝'
-      },{
-        id:1,
-        url:'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text:'淘宝'
+      list: [{
+        id: 1,
+        url: 'http://www.ruiyunzhushou.com/images/friut/fruit_16.png',
+        text: '淘宝'
+      }, {
+        id: 2,
+        url: 'http://www.ruiyunzhushou.com/images/friut/fruit_20.png',
+        text: '淘宝'
+      }, {
+        id: 3,
+        url: 'http://www.ruiyunzhushou.com/images/friut/fruit_16.png',
+        text: '淘宝'
+      }, {
+        id: 1,
+        url: 'http://www.ruiyunzhushou.com/images/friut/fruit_16.png',
+        text: '淘宝'
+      }, {
+        id: 1,
+        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
+        text: '淘宝'
+      }, {
+        id: 1,
+        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
+        text: '淘宝'
+      }, {
+        id: 1,
+        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
+        text: '淘宝'
+      }, {
+        id: 1,
+        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
+        text: '淘宝'
+      }, {
+        id: 1,
+        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
+        text: '淘宝'
+      }, {
+        id: 1,
+        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
+        text: '淘宝'
+      }, {
+        id: 1,
+        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
+        text: '淘宝'
+      }, {
+        id: 1,
+        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
+        text: '淘宝'
+      }, {
+        id: 1,
+        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
+        text: '淘宝'
+      }, {
+        id: 1,
+        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
+        text: '淘宝'
+      }, {
+        id: 1,
+        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
+        text: '淘宝'
+      }, {
+        id: 1,
+        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
+        text: '淘宝'
+      }, {
+        id: 1,
+        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
+        text: '淘宝'
       }]
     }
   },
-  methods:{
+  methods: {
     pullList () {
       this.index++
       setTimeout(() => {
-        if(this.index===5){
-          this.finished=true
+        if (this.index === 5) {
+          this.finished = true
           this.loading = false
-          return false;
+          return false
         }
         this.list = this.list.concat(this.list)
         this.loading = false
-      }, 1000);
+      }, 1000)
     },
     dropList () {
       const list = this.list
@@ -137,7 +137,7 @@ export default {
       setTimeout(() => {
         this.list = list
         this.refreshing = false
-      }, 1000);
+      }, 1000)
     }
   }
 }

@@ -12,49 +12,49 @@
 </template>
 <script>
 export default {
-  name:'page-nav',
-  watch:{
-    '$route':{
-      handler(router){
-        if(this.link){
-          const { navTitle, title, backUrl,backIcon } = router.meta
-          this.title = navTitle||title
-          this.leftUrl = this.backUrl||''
+  name: 'page-nav',
+  watch: {
+    $route: {
+      handler (router) {
+        if (this.link) {
+          const { navTitle, title, backIcon } = router.meta
+          this.title = navTitle || title
+          this.leftUrl = this.backUrl || ''
           this.back = backIcon || true
         }
       },
-      immediate:true
+      immediate: true
     }
   },
-  data:{
-    title:'',
-    leftUrl:'',
-    back:false,
-    close:false
+  data: {
+    title: '',
+    leftUrl: '',
+    back: false,
+    close: false
   },
-  props:{
-    link:{
-     type:Boolean,
-     default:false
+  props: {
+    link: {
+      type: Boolean,
+      default: false
     },
-   title:{
-     type:String,
-     default:''
-   },
-   isIcon:{
-     type:Boolean,
-     default:false
-   }
+    title: {
+      type: String,
+      default: ''
+    },
+    isIcon: {
+      type: Boolean,
+      default: false
+    }
   },
   methods: {
     onClickLeft () {
-      if(this.leftUrl){
+      if (this.leftUrl) {
         this.$router.push(this.leftUrl)
-      }else{
+      } else {
         this.$router.go(-1)
       }
     },
-    onClickRight(){
+    onClickRight () {
       this.$emit('on-close')
     }
   }

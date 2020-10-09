@@ -6,7 +6,6 @@
  */
 import Vue from 'vue'
 import Router from 'vue-router'
-import http from '@/utils/httpRequest'
 import routers from './routers'
 // import { clearLoginInfo } from '@/utils'
 

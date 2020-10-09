@@ -37,42 +37,42 @@
   </div>
 </template>
 <script>
-import { userRecharge,userInfo } from '@/api'
+import { userRecharge, userInfo } from '@/api'
 export default {
-  name:'userRecharge',
+  name: 'userRecharge',
   data () {
-    return{
-      subDisabled:false,
-      formData:{},
-      active:0,
-      list:[
-        { moneny:30, integral:30 },
-        { moneny:50, integral:60 },
-        { moneny:80, integral:100 },
-        { moneny:100, integral:125 },
-        { moneny:150, integral:180 },
-        { moneny:200,integral:250 }
+    return {
+      subDisabled: false,
+      formData: {},
+      active: 0,
+      list: [
+        { moneny: 30, integral: 30 },
+        { moneny: 50, integral: 60 },
+        { moneny: 80, integral: 100 },
+        { moneny: 100, integral: 125 },
+        { moneny: 150, integral: 180 },
+        { moneny: 200, integral: 250 }
       ]
     }
   },
   mounted () {
-    userInfo().then(res=>{
-      if(res){
+    userInfo().then(res => {
+      if (res) {
         this.formData = res.data || {}
       }
     })
   },
   methods: {
-  async submit () {
+    async submit () {
       this.subDisabled = true
-      let { integral } = this.list[this.active]
-      let res=await userRecharge({nums:integral})
-      if(res){
+      const { integral } = this.list[this.active]
+      const res = await userRecharge({ nums: integral })
+      if (res) {
         this.$notify({
-          type:'success',
-          message:'充值成功',
-          duration:500,
-          onClose: ()=> {
+          type: 'success',
+          message: '充值成功',
+          duration: 500,
+          onClose: () => {
             this.formData.balance = res.data.balance
           }
         })

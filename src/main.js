@@ -1,8 +1,7 @@
 import Vue from 'vue'
-import Vant from 'vant'               //https://mint-ui.github.io/#!/zh-cn
-import { Lazyload } from 'vant'
+import Vant, { Lazyload } from 'vant' // https://mint-ui.github.io/#!/zh-cn
 // import VueCookie from 'vue-cookie'            // api: https://github.com/alfhen/vue-cookie
-//路由
+// 路由
 import router from './router'
 import components from './components'
 import global from './global'

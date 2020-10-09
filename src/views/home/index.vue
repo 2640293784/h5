@@ -2,7 +2,7 @@
   <div id="main-home">
     <div class="main-container">
       <van-sticky>
-        <header>	
+        <header>
           <div class="jd-logo">
             <img src="@img/logo.png" />
           </div>
@@ -11,7 +11,7 @@
           </div>
           <div class="address">
             <router-link to="/address">北京</router-link>
-          </div>	
+          </div>
         </header>
       </van-sticky>
       <g-swiper class="swiper" :list="swiperData"></g-swiper>
@@ -50,7 +50,7 @@
               <router-link to="/details/1">
                 <img src="http://www.ruiyunzhushou.com/images/birthday/birth3-07.png" alt="">
               </router-link>
-            </div> 
+            </div>
           </div>
         </div>
       </div>
@@ -85,89 +85,57 @@ export default {
       movieData: [],
       birthData: [],
       fruitData: [],
-      list:[
-    	     {
-    	     	text:"积分商城",
-    	     	icon:require("@assets/img/banner/1.png"),
-    	     	href:'/integ'
-    	     },
-    	     {
-    	     	text:"影音天地",
-    	     	icon:require("@assets/img/banner/2.png"),
-    	     	href:'/movie'
-    	     },
-    	     {
-    	     	text:"生日专区",
-    	     	icon:require("@assets/img/banner/3.png"),
-    	     	href:'/birthday'
-    	     },
-    	     {
-    	     	text:"果园飘香",
-    	     	icon:require("@assets/img/banner/4.png"),
-    	     	href:'/fruit'
-    	     },
-    	     {
-    	     	text:"婴儿用品",
-    	     	icon:require("@assets/img/banner/5.png"),
-    	     	href:'/classification/2'
-    	     },
-    	     {
-    	     	text:"应季甄选",
-    	     	icon:require("@assets/img/banner/6.png"),
-    	     	href:'/selection'
-    	     },
-    	     {
-    	     	text:"大牌手机",
-    	     	icon:require("@assets/img/banner/7.png"),
-    	     	href:'/classification/0'
-    	     },
-    	     {
-    	     	text:"美妆个护",
-    	     	icon:require("@assets/img/banner/8.png"),
-    	     	href:'/classification/1'
-    	     }
-    	]
+      list: [
+        { text: '积分商城', icon: require('@assets/img/banner/1.png'), href: '/integ' },
+        { text: '影音天地', icon: require('@assets/img/banner/2.png'), href: '/movie' },
+        { text: '生日专区', icon: require('@assets/img/banner/3.png'), href: '/birthday' },
+        { text: '果园飘香', icon: require('@assets/img/banner/4.png'), href: '/fruit' },
+        { text: '婴儿用品', icon: require('@assets/img/banner/5.png'), href: '/classification/2' },
+        { text: '应季甄选', icon: require('@assets/img/banner/6.png'), href: '/selection' },
+        { text: '大牌手机', icon: require('@assets/img/banner/7.png'), href: '/classification/0' },
+        { text: '美妆个护', icon: require('@assets/img/banner/8.png'), href: '/classification/1' }
+      ]
     }
   },
-  components:{ MovieList },
+  components: { MovieList },
   mounted () {
     this.$toast.loading({
       duration: 0
-    });
-    Promise.all([this.getCarousel(),this.getMovie()],this.getBirth(),this.getFruit()).then(()=>{
+    })
+    Promise.all([this.getCarousel(), this.getMovie()], this.getBirth(), this.getFruit()).then(() => {
       this.$toast.clear()
-    }).catch(()=>{
+    }).catch(() => {
       this.$toast.clear()
     })
-},
-methods:{
-  //获取轮播图
-  async getCarousel () {
-    let res =await homeCarousel()
-    if(res){
-        this.swiperData = res.data || [];
-    }
   },
-  //获取电影列表
-  async getMovie () {
-    let res =await getMovieList()
-    if(res){
+  methods: {
+  // 获取轮播图
+    async getCarousel () {
+      const res = await homeCarousel()
+      if (res) {
+        this.swiperData = res.data || []
+      }
+    },
+    // 获取电影列表
+    async getMovie () {
+      const res = await getMovieList()
+      if (res) {
         this.movieData = res.data || []
-    }
-  },
-  async getBirth () {
-    let res =await getBirthList()
-    if(res){
+      }
+    },
+    async getBirth () {
+      const res = await getBirthList()
+      if (res) {
         this.birthData = res.data || []
-    }
-  },
-  async getFruit () {
-    let res = await getFruitList()
-    if(res){
+      }
+    },
+    async getFruit () {
+      const res = await getFruitList()
+      if (res) {
         this.fruitData = res.data || []
+      }
     }
   }
-}
 }
 </script>
 <style lang="less" scoped>
@@ -181,12 +149,12 @@ methods:{
     overflow-y: auto;
   }
   span.secskill-icon{
-	display: inline-block;
-	margin-left: .44rem;
-	width: .88rem;
-	height: .71rem;
-	background-position: -.18rem -6.49rem;
-	margin-top:15px;
+  display: inline-block;
+  margin-left: .44rem;
+  width: .88rem;
+  height: .71rem;
+  background-position: -.18rem -6.49rem;
+  margin-top:15px;
 }
 .nav{
   padding: .53rem 0;

@@ -17,11 +17,11 @@
 </template>
 <script>
 export default {
-  name:'main-movie-list',
+  name: 'main-movie-list',
   props: {
     list: {
-      type:Array,
-      default:()=>[]
+      type: Array,
+      default: () => []
     }
   }
 }

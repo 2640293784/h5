@@ -17,7 +17,7 @@
       </ul>
       <div v-if="tabIndex===0">
         <img src="http://www.ruiyunzhushou.com/images/xqq/sp_2.png">
-		    <img src="http://www.ruiyunzhushou.com/images/xqq/sp_1.png">
+        <img src="http://www.ruiyunzhushou.com/images/xqq/sp_1.png">
       </div>
       <div v-if="tabIndex===1">
         <p class="detail_main">品牌及名称：海尔变频空调海尔变频空调</p>
@@ -40,16 +40,16 @@
 </template>
 <script>
 export default {
-  name:'details',
+  name: 'details',
   data () {
     return {
-      tabIndex:0,
+      tabIndex: 0,
       detailsObj: {
-        number:1
+        number: 1
       }
     }
   },
-  methods:{
+  methods: {
     onClickIcon () {
 
     }

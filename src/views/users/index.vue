@@ -1,18 +1,18 @@
 <template>
   <div class="user-info">
     <div class="my_info">
-			<img src="@img/user/bj.png"/>
-			<div class="my_mian">
-				<p class="my_pic">
-					<label>
-						<input accept="image/*;capture=camera" @change="upload" type="file"/>
-						<img :src="formData.picture||require('@img/user/my_03.png')" class="user_img"/>
-					</label>
-				</p>
-				<span class="my_number">{{formData.username}}</span>
-				<span class="my_txt">余额：{{formData.balance}}积分</span>
-			</div>
-		</div>
+      <img src="@img/user/bj.png"/>
+      <div class="my_mian">
+        <p class="my_pic">
+          <label>
+            <input accept="image/*;capture=camera" @change="upload" type="file"/>
+            <img :src="formData.picture||require('@img/user/my_03.png')" class="user_img"/>
+          </label>
+        </p>
+        <span class="my_number">{{formData.username}}</span>
+        <span class="my_txt">余额：{{formData.balance}}积分</span>
+      </div>
+    </div>
     <van-cell is-link to="/users/information">
       <div class="user-cell">
         <img src="@img/user/main_04.png">
@@ -55,21 +55,21 @@ export default {
   name: 'user',
   data () {
     return {
-      formData:{
+      formData: {
         balance: 0,
         intergralId: 0,
-        username: "1"
+        username: '1'
       }
     }
   },
   mounted () {
-    userInfo().then(res=>{
-      if(res){
+    userInfo().then(res => {
+      if (res) {
         this.formData = res.data || {}
       }
     })
   },
-  methods:{
+  methods: {
     signOut () {
       this.$router.push('/login')
     },
@@ -91,19 +91,19 @@ export default {
   }
 }
 .my_info{
-	width: 100%;
+  width: 100%;
   position: relative;
   .my_mian{
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	top: 0;
-	margin: auto;
-	width: 40%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  margin: auto;
+  width: 40%;
   height: 5.56rem;
   .my_pic{
-	width: 55%;
+  width: 55%;
   margin: 0 auto;
   input{
     display: none;
@@ -111,15 +111,15 @@ export default {
 }
 }
 span{
-	width: 100%;
-	display: inline-block;
-	line-height: 22px;
-	text-align: center;
-	color: #fff;
+  width: 100%;
+  display: inline-block;
+  line-height: 22px;
+  text-align: center;
+  color: #fff;
 }
 span.my_number{
-	font-size: 0.8rem;
-	margin-top: .98rem;
+  font-size: 0.8rem;
+  margin-top: .98rem;
 }
 }
 .sign-out{

@@ -1,41 +1,41 @@
 import Vue from 'vue'
 import axios from 'axios'
-//路由
+// 路由
 import router from '../router'
 import { Notify, Toast } from 'vant'
 const http = axios.create({
   timeout: 1000 * 50,
   withCredentials: true
 })
-//请求拦截器
+// 请求拦截器
 http.interceptors.request.use(config => {
-  //默认json格式
+  // 默认json格式
   config.headers['Content-Type'] = config['Content-Type'] || 'application/json; charset=utf-8'
   config.loading = config.loading || true
-  //判断是否需要loading
+  // 判断是否需要loading
   config.loading && Toast.loading({
     duration: 0
-  });
-  //判断是否需要验证登录
-  // if (config.userId) {
-  //   let userId = Vue.cookie.get('userId')
-  //   if (userId) {
-  //     config.headers = {
-  //       "userId": userId
-  //     }
-  //   } else {
-  //     Notify({ 
-  //       type: 'warning',
-  //       message: '请先登陆',
-  //       duration:1000
-  //     });
-  //     router.push({ path: '/login' });
-  //   }
-  // }else{
-  //   delete config.userId;
-  //   return config;
-  // }
-  return config;
+  })
+  // 判断是否需要验证登录
+  if (config.userId) {
+    const userId = Vue.cookie.get('koa.sid')
+    if (userId) {
+      config.headers = {
+        userId: userId
+      }
+    } else {
+      Notify({
+        type: 'warning',
+        message: '请先登陆',
+        duration: 1000
+      })
+      router.push({ path: '/login' })
+    }
+  } else {
+    delete config.userId
+    return config
+  }
+  return config
 }, err => Promise.reject(err))
 // 响应拦截器
 http.interceptors.response.use(response => {
@@ -43,40 +43,40 @@ http.interceptors.response.use(response => {
   const { status, data } = response || {}
   switch (status) {
     case 200:
-      if(data.errno===0){
-        return data;
-      }else{
-        Notify({ 
+      if (data.errno === 0) {
+        return data
+      } else {
+        Notify({
           type: 'warning',
-          message:data.message
+          message: data.message
         })
-        if(data.data.code === 401){
-          router.push({ path: '/login' });
+        if (data.data.code === 401) {
+          router.push({ path: '/login' })
         }
       }
-      break;
+      break
     case 404:
-      Notify({ 
+      Notify({
         type: 'danger',
         message: '请求接口不存在',
-        duration:500
-      });
-      break;
-    default:
-      Notify({ 
-        type: 'warning',
-        message,
-        duration:500
+        duration: 500
       })
-      break;
+      break
+    default:
+      Notify({
+        type: 'warning',
+        message: data.message,
+        duration: 500
+      })
+      break
   }
-}, error => {
+  return data
+}, () => {
   Toast.clear()
-  Notify({ 
+  Notify({
     type: 'danger',
-    message:'请求错误',
-    duration:500
-  });
-  new Error(error)
+    message: '请求错误',
+    duration: 500
+  })
 })
-export default http;
+export default http

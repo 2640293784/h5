@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
+const WebpackBar = require('webpackbar')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const vueLoaderPlugin = require('vue-loader/lib/plugin')
@@ -7,7 +8,9 @@ function resolve (src) {
   return path.join(__dirname, '..', src);
 }
 module.exports = {
-  entry: "./src/main.js",
+  entry: {
+    app: ["@babel/polyfill", "./src/main.js"]
+  },
   output: {
     filename: "js/[name].[hash:10].js",
     path: resolve('dist')
@@ -22,15 +25,27 @@ module.exports = {
         //include:path.resolve(__dirname,'src')
       },
       {
+        test: /\.(js|vue)$/,
+        loader: "eslint-loader",
+        enforce: "pre",
+        //指定检查的目录
+        include: [resolve('src')],
+        //eslint检查报告的格式规范
+        options: {
+        formatter: require("eslint-friendly-formatter")
+        }
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          loaders:{
-          css: {
-            use: ['css-loader', 'less-loader'],
-            fallback: 'vue-style-loader'
+          loaders: {
+            css: {
+              use: ['css-loader', 'less-loader'],
+              fallback: 'vue-style-loader'
+            }
+          }
         }
-      }}
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -54,6 +69,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new WebpackBar(),
     new HtmlWebpackPlugin({
       template: './index.html',
       filename: 'index.html',

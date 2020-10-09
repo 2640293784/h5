@@ -19,39 +19,39 @@ export default {
   name: 'register',
   data () {
     return {
-      username: "",
-      password: "",
-      psd: ""
+      username: '',
+      password: '',
+      psd: ''
     }
   },
   methods: {
-  async Submit () {
-      if (this.username == ""){
-        this.$toast('请输入用户名');
-        return false;
+    async Submit () {
+      if (this.username === '') {
+        this.$toast('请输入用户名')
+        return false
       }
-      if (this.password == ""){
-        this.$toast('请输入密码');
-        return false;
+      if (this.password === '') {
+        this.$toast('请输入密码')
+        return false
       }
-      if (this.psd != this.password){
-        this.$toast('两次密码输入不一致');
-        return false;
+      if (this.psd !== this.password) {
+        this.$toast('两次密码输入不一致')
+        return false
       }
       const params = {
         username: this.username,
         password: this.password
       }
-      let res =await userRegister(params)
-      if(res){
+      const res = await userRegister(params)
+      if (res) {
         this.$notify({
-          type:'success',
-          message:'注册成功',
-          duration:500,
-          onClose: ()=> {
-            this.$router.push("/login")
+          type: 'success',
+          message: '注册成功',
+          duration: 500,
+          onClose: () => {
+            this.$router.push('/login')
           }
-        });
+        })
       }
     }
   }

@@ -39,38 +39,38 @@ export default {
   name: 'user-order',
   data () {
     return {
-      flagEnum:{
-        1:'待付款',
-        2:'待发货',
-        3:'已发货'
+      flagEnum: {
+        1: '待付款',
+        2: '待发货',
+        3: '已发货'
       },
-      list:[
+      list: [
         {
-          number:2,
-          price:'2.00',
-          desc:'描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息',
-          title:'商品标题',
-          imageUel:'https://img.yzcdn.cn/vant/ipad.jpeg',
-          index:'1234567890',
-          type:1
+          number: 2,
+          price: '2.00',
+          desc: '描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息',
+          title: '商品标题',
+          imageUel: 'https://img.yzcdn.cn/vant/ipad.jpeg',
+          index: '1234567890',
+          type: 1
         },
         {
-          number:2,
-          price:'2.00',
-          desc:'描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息',
-          title:'商品标题',
-          imageUel:'https://img.yzcdn.cn/vant/ipad.jpeg',
-          index:'1234567890',
-          type:2
+          number: 2,
+          price: '2.00',
+          desc: '描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息',
+          title: '商品标题',
+          imageUel: 'https://img.yzcdn.cn/vant/ipad.jpeg',
+          index: '1234567890',
+          type: 2
         },
         {
-          number:2,
-          price:'2.00',
-          desc:'描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息',
-          title:'商品标题',
-          imageUel:'https://img.yzcdn.cn/vant/ipad.jpeg',
-          index:'1234567890',
-          type:3
+          number: 2,
+          price: '2.00',
+          desc: '描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息',
+          title: '商品标题',
+          imageUel: 'https://img.yzcdn.cn/vant/ipad.jpeg',
+          index: '1234567890',
+          type: 3
         }
       ]
     }

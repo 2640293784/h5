@@ -1,51 +1,42 @@
 import Vue from 'vue'
 import router from '@/router'
 const _is = Object.prototype.toString
-/**
- * 字符串
- */
-export function isString(o) {
+// 字符串
+export function isString (o) {
   return _is.call(o) === '[object String]'
 }
-/**
- * 数字
- */
-export function isNumber(o) {
+
+// 数字
+export function isNumber (o) {
   return _is.call(o) === '[object Number]'
 }
-/**
- * 函数
- */
-export function isFun(o) {
+
+// 函数
+export function isFun (o) {
   return _is.call(o) === '[object Function]'
 }
-/**
- * 数组
- */
-export function isArray(o) {
+
+// 数组
+export function isArray (o) {
   return _is.call(o) === '[object Array]'
 }
-/**
- * 对象
- */
-export function isObj(o) {
+
+// 对象
+export function isObj (o) {
   return _is.call(o) === '[object Object]'
 }
-/**
- * 手机号码
- */
+
+// 手机号码
 export function isMobile (o) {
   return /^1(3|4|5|6|7|8|9)\d{9}$/.test(o)
 }
-/**
- * URL地址
- */
+
+// URL地址
 export function isURL (o) {
   return /^http[s]?:\/\/.*/.test(o)
 }
-/**
- * 清除登录信息
- */
+
+// 清除登录信息
 export function clearLoginInfo () {
   Vue.cookie.delete('userToken')
   Vue.cookie.delete('userId')

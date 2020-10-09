@@ -1,55 +1,55 @@
 <template>
-	<div class="page-container">
-        <h1>登陆</h1>
-        <form autocomplete="off">
-            <input type="text" v-model="formData.username" placeholder="用户名">
-            <!-- <div class="code">
-              <input type="text" v-model="code" placeholder="验证码">
-              <div class="canvas-code">
-                <img src="@img/code.png"/>
-              </div>
-            </div> -->
-            <input type="password" v-model="formData.password" placeholder="密码">
-            <button type="button" @click="Submit">登陆</button>
-        </form>
-        <div class="connect">
-            <router-link to="/register">注册</router-link>
-            <router-link to="/password" class="right">找回密码</router-link>
+  <div class="page-container">
+    <h1>登陆</h1>
+    <form autocomplete="off">
+      <input type="text" v-model="formData.username" placeholder="用户名">
+      <!-- <div class="code">
+        <input type="text" v-model="code" placeholder="验证码">
+        <div class="canvas-code">
+          <img src="@img/code.png"/>
         </div>
+      </div> -->
+      <input type="password" v-model="formData.password" placeholder="密码">
+      <button type="button" @click="Submit">登陆</button>
+    </form>
+    <div class="connect">
+      <router-link to="/register">注册</router-link>
+      <router-link to="/password" class="right">找回密码</router-link>
     </div>
+  </div>
 </template>
 
 <script>
 import { userLogin } from '@/api'
-export default{
-  name:'login',
-	data () {
-		return{
-      formData:{},
-      code:'',
-			popup:false
-		}
+export default {
+  name: 'login',
+  data () {
+    return {
+      formData: {},
+      code: '',
+      popup: false
+    }
   },
-  methods:{
+  methods: {
     async Submit () {
-      let res=await userLogin(this.formData)
-      if(res){
+      const res = await userLogin(this.formData)
+      if (res) {
         this.$notify({
-          type:'success',
-          message:'登录成功',
-          duration:500,
-          onClose: ()=>{
-            this.$router.push("/");
+          type: 'success',
+          message: '登录成功',
+          duration: 500,
+          onClose: () => {
+            this.$router.push('/')
           }
         })
       }
-      }
     }
+  }
 }
 </script>
 
 <style lang="less" scoped>
-  .page-container { 
+  .page-container {
       padding-top: 5.33rem;
       height: 100%;
       background: url(~@img/user/timg.jpg) no-repeat;
@@ -66,7 +66,7 @@ export default{
       position: relative;
       width: 81.33%;
       margin: .67rem auto 0 auto;
-      text-align: center; 
+      text-align: center;
   }
   input {
       width: 100%;
