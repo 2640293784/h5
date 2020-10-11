@@ -4,6 +4,8 @@ const WebpackBar = require('webpackbar')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const vueLoaderPlugin = require('vue-loader/lib/plugin')
+const { dev, build } = require('../vue.config')
+const isDrop = process.env.NODE_ENV === 'production'
 function resolve (src) {
   return path.join(__dirname, '..', src);
 }
@@ -43,7 +45,9 @@ module.exports = {
             css: {
               use: ['css-loader', 'less-loader'],
               fallback: 'vue-style-loader'
-            }
+            },
+            minimize: isDrop,
+            sourceMap: isDrop?build.sourceMap:dev.sourceMap,
           }
         }
       },

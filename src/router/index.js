@@ -15,20 +15,12 @@ const router = new Router({
   mode: 'hash',
   routes: routers
 })
-// router.beforeEach((to, from, next) => {
-//   let token = Vue.cookie.get('userToken')
-//   const userToken = ['login', 'register', 'password']
-//   if (userToken.indexOf(to.name) !== -1)
-//   {
-//     next();
-//     return;
-//   }
-//   if (!token || !/\S/.test(token))
-//   {
-//     next({ name: 'login' })
-//   } else
-//   {
-//     next()
-//   }
-// })
+router.beforeEach((to, from, next) => {
+  const token = Vue.cookie.get('koa.sid')
+  if (!token && to.meta.isLogin) {
+    next({ name: 'login' })
+  } else {
+    next()
+  }
+})
 export default router

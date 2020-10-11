@@ -3,12 +3,10 @@
     <h1>登陆</h1>
     <form autocomplete="off">
       <input type="text" v-model="formData.username" placeholder="用户名">
-      <!-- <div class="code">
+      <div class="code">
         <input type="text" v-model="code" placeholder="验证码">
-        <div class="canvas-code">
-          <img src="@img/code.png"/>
-        </div>
-      </div> -->
+        <div class="canvas-code" v-code></div>
+      </div>
       <input type="password" v-model="formData.password" placeholder="密码">
       <button type="button" @click="Submit">登陆</button>
     </form>
@@ -32,15 +30,14 @@ export default {
   },
   methods: {
     async Submit () {
+      if (this.code !== this.$code) {
+        this.$warning('验证码输入有误')
+        return false
+      }
       const res = await userLogin(this.formData)
       if (res) {
-        this.$notify({
-          type: 'success',
-          message: '登录成功',
-          duration: 500,
-          onClose: () => {
-            this.$router.push('/')
-          }
+        this.$success('登录成功', () => {
+          this.$router.push('/')
         })
       }
     }
@@ -131,8 +128,13 @@ export default {
     }
   .code{
     display: flex;
+    input{
+      flex: 1;
+    }
   }
   .canvas-code{
-    margin-top: 1.1rem;
+    height: 2rem;
+    flex:1;
+    margin-top: 1.11rem;
   }
 </style>

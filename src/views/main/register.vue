@@ -3,6 +3,10 @@
     <h1>注册</h1>
     <form autocomplete="off">
       <input type="number" v-model="username" placeholder="手机号">
+      <div class="code">
+        <input type="text" v-model="code" placeholder="验证码">
+        <div class="canvas-code" v-code></div>
+      </div>
       <input type="password" v-model="password" placeholder="密码">
       <input type="password" v-model="psd" placeholder="确认密码">
       <button type="button" @click="Submit">注册</button>
@@ -21,6 +25,7 @@ export default {
     return {
       username: '',
       password: '',
+      code: '',
       psd: ''
     }
   },
@@ -58,7 +63,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .page-container {
   padding-top: 5.33rem;
   height: 100%;
@@ -150,13 +155,15 @@ button:active {
   font-size: 0.8rem;
   font-weight: 500;
 }
-.popup {
-  width: 100%;
-  height: 2rem;
-  text-align: center;
-  line-height: 2rem;
-  color: white;
-  font-size: 0.62rem;
-  background: rgba(0, 0, 0, 0.3);
-}
+.code{
+    display: flex;
+    input{
+      flex: 1;
+    }
+  }
+  .canvas-code{
+    height: 2rem;
+    flex:1;
+    margin-top: 1.11rem;
+  }
 </style>

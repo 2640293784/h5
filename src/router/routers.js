@@ -46,7 +46,8 @@ const routers = [
     component: _import('shoppingCart'),
     name: 'shoppingCart',
     meta: {
-      title: '购物车'
+      title: '购物车',
+      isLogin: true
     }
   },
   {
@@ -90,7 +91,8 @@ const routers = [
     component: _import('users'),
     name: 'users',
     meta: {
-      title: '个人中心'
+      title: '个人中心',
+      isLogin: true
     }
   },
   {
@@ -99,6 +101,7 @@ const routers = [
     name: 'usersInformation',
     meta: {
       title: '基本信息',
+      isLogin: true,
       show: true
     }
   },
@@ -108,6 +111,7 @@ const routers = [
     name: 'usersAddress',
     meta: {
       title: '收货地址',
+      isLogin: true,
       show: true
     }
   },
@@ -117,6 +121,7 @@ const routers = [
     name: 'usersOrder',
     meta: {
       title: '我的订单',
+      isLogin: true,
       show: true
     }
   },
@@ -126,6 +131,7 @@ const routers = [
     name: 'usersRecharge',
     meta: {
       title: '账户充值',
+      isLogin: true,
       show: true
     }
   },
