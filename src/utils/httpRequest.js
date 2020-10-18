@@ -3,6 +3,7 @@ import axios from 'axios'
 // 路由
 import router from '../router'
 import { Notify, Toast } from 'vant'
+const { origin } = window.location
 const http = axios.create({
   timeout: 1000 * 50,
   withCredentials: true
@@ -11,6 +12,7 @@ const http = axios.create({
 http.interceptors.request.use(config => {
   // 默认json格式
   config.headers['Content-Type'] = config['Content-Type'] || 'application/json; charset=utf-8'
+  config.url = process.env.ENV === 'production' ? `${origin}/v1${config.url}` : `${origin}${config.url}`
   config.loading = config.loading || true
   // 判断是否需要loading
   config.loading && Toast.loading({

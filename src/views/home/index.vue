@@ -1,7 +1,7 @@
 <template>
   <div id="main-home">
     <div class="main-container">
-      <van-sticky>
+      <van-sticky class="main-stivky">
         <header>
           <div class="jd-logo">
             <img src="@img/logo.png" />

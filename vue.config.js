@@ -1,11 +1,11 @@
-const host = 'http://192.168.1.100:3001'
+const host = 'http://192.168.1.100:8090'
 //const host = 'http://192.168.1.102:3001'
 const porxyTable = {
   '/api': {
     target: host, //设置调用接口域名和端口号别忘了加http
     changeOrigin: true,
     pathRewrite: {
-      '^/api': 'v1/api'
+      '^/api': '/v1/api'
     }
   }
 }
@@ -27,7 +27,8 @@ module.exports = {
     errorOverlay: true
   },
   build: {
-    env:"production"
+    env:"production",
+    open:true
     //devtool: 'cheap-module-eval-source-map'
     // productionGizp:false,
     // productionGzipExtensions:['js','css'],

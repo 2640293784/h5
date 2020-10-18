@@ -27,17 +27,6 @@ module.exports = {
         //include:path.resolve(__dirname,'src')
       },
       {
-        test: /\.(js|vue)$/,
-        loader: "eslint-loader",
-        enforce: "pre",
-        //指定检查的目录
-        include: [resolve('src')],
-        //eslint检查报告的格式规范
-        options: {
-        formatter: require("eslint-friendly-formatter")
-        }
-      },
-      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
@@ -62,6 +51,14 @@ module.exports = {
           }
         }
       },
+      // {
+      //   test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+      //   loader: 'url-loader',
+      //   options: {
+      //     limit: 10000,
+      //     name: path.posix.join('src/assets','media/[name].[hash:7].[ext]')
+      //   }
+      // },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',

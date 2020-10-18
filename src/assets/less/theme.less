@@ -39,7 +39,7 @@
 // Font
 @font-size-xs: 10px;
 @font-size-sm: 12px;
-@font-size-md: .6rem;
+@font-size-md: 0.6rem;
 @font-size-lg: 16px;
 @font-weight-bold: 500;
 @line-height-xs: 14px;
@@ -73,7 +73,7 @@
 // AddressList
 
 // Button
-.van-button__text{
+.van-button__text {
   font-size: @font-size-md;
 }
 .van-button--danger {
@@ -86,7 +86,7 @@
 
 // Cell
 .van-card:not(:first-child) {
-   margin-top: 0;
+  margin-top: 0;
 }
 // CellGroup
 
@@ -115,7 +115,7 @@
 // Divider
 
 // DropdownMenu
-.van-dropdown-menu__bar{
+.van-dropdown-menu__bar {
   height: 2rem;
 }
 // Empty
@@ -129,7 +129,7 @@
 // IndexAnchor
 
 // IndexBar
-.van-nav-bar{
+.van-nav-bar {
   height: 2rem;
 }
 // Info
@@ -143,16 +143,16 @@
 // Loading
 
 // NavBar
-.van-nav-bar{
-  .van-icon{
+.van-nav-bar {
+  .van-icon {
     color: #969799;
   }
 }
 .van-nav-bar__left,
- .van-nav-bar__right{
-padding: 0 .22rem;
+.van-nav-bar__right {
+  padding: 0 0.22rem;
 }
-.van-nav-bar__arrow{
+.van-nav-bar__arrow {
   font-size: 1rem;
 }
 // NoticeBar
@@ -186,10 +186,10 @@ padding: 0 .22rem;
 // Search
 
 // Sidebar
-.van-sidebar-item--select::before{
+.van-sidebar-item--select::before {
   background-color: @green;
 }
-.van-sidebar-item{
+.van-sidebar-item {
   padding: 0;
   height: 1.8rem;
   line-height: 1.8rem;
@@ -205,15 +205,20 @@ padding: 0 .22rem;
 // Steps
 
 // Sticky
-
-// Stepper
-.van-stepper__minus, 
-.van-stepper__plus,
-.van-stepper__input{
-  background-color: white;
-  border:1px solid #c3c3c3;
+.van-sticky--fixed {
+  max-width: 768px;
+  left: auto;
+  right: auto;
+  width: 100%;
 }
-.van-stepper__input{
+// Stepper
+.van-stepper__minus,
+.van-stepper__plus,
+.van-stepper__input {
+  background-color: white;
+  border: 1px solid #c3c3c3;
+}
+.van-stepper__input {
   margin: 0;
   border-left: 0;
   border-right: 0;
@@ -223,24 +228,24 @@ padding: 0 .22rem;
 // Swipe
 
 // Switch
-.van-switch{
-  height: .8rem;
+.van-switch {
+  height: 0.8rem;
   width: 2rem;
 }
-.van-switch__node{
-  width: .8rem;
-  height: .8rem;
+.van-switch__node {
+  width: 0.8rem;
+  height: 0.8rem;
 }
-.van-switch--on{
-  .van-switch__node{
-   transform: translateX(1.2rem);
+.van-switch--on {
+  .van-switch__node {
+    transform: translateX(1.2rem);
   }
 }
 // SwitchCell
 
 // Tabbar
-.van-tabbar-item--active{
-  color:@green;
+.van-tabbar-item--active {
+  color: @green;
 }
 
 // TabbarItem
@@ -252,7 +257,6 @@ padding: 0 .22rem;
 // Tag
 
 // Toast
-
 
 // TreeSelect
 

@@ -43,7 +43,9 @@ export default {
 </script>
 <style lang="less" scoped>
 .tabbar{
+  max-width: 768px;
   box-shadow: 0 -0.13rem 0.22rem #ccc;
+  left:auto;
   height: 2rem;
 }
 .tabbar-item__text{

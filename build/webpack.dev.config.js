@@ -8,7 +8,7 @@ const { dev } = require('../vue.config')
 const baseWebpackConfig = require('./webpack.base.config')
 const { ipconfig, createPort } = require('./utils')
 const processEnv = {
-  ENV:dev.Env,
+  ENV:dev.env,
   OPEN_PROXY:dev.open_proxy||false,//是否开启代理
   PORT:dev.port,
   HOST:dev.host
@@ -28,6 +28,17 @@ const devWebpackConfig = {
   ],
   module: {
     rules: [
+      {
+        test: /\.(js|vue)$/,
+        loader: "eslint-loader",
+        enforce: "pre",
+        //指定检查的目录
+        include: [path.join(__dirname, '..', 'src')],
+        //eslint检查报告的格式规范
+        options: {
+        formatter: require("eslint-friendly-formatter")
+        }
+      },
       {
         test: /\.css/,
         use:[

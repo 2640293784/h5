@@ -1,4 +1,3 @@
-// const path = require('path')
 const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 //const UglifyjsWebpackPlugin=require('uglifyjs-webpack-plugin')
@@ -19,6 +18,7 @@ const prodWebpackConfig = {
     minimizer: [new TerserJSPlugin()],
   },
   plugins:[
+    new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
       'process.env':JSON.stringify(processEnv)
     }),
@@ -26,8 +26,7 @@ const prodWebpackConfig = {
       filename: 'css/[name].[hash:10].css',
       chunkFilename: 'css/[id].[hash].css'
     }),
-    new OptimizeCssAssetsWebpackPlugin(),
-    new CleanWebpackPlugin()
+    new OptimizeCssAssetsWebpackPlugin()
 ],
 module:{
   rules:[

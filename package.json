@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --progress --config build/webpack.prod.config.js",
-    "server": "nodemon --watch build/webpack.dev.config.js --exec \"webpack-dev-server\"",
-    "start": "webpack-dev-server --progress --config build/webpack.dev.config.js"
+    "server": "webpack-dev-server --progress --config build/webpack.dev.config.js",
+    "dev": "cnpm run server",
+    "mock": "nodemon build/mock.js"
   },
   "keywords": [],
   "author": "",
@@ -34,12 +35,14 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "eslint-plugin-vue": "^7.0.1",
+    "express": "^4.17.1",
     "file-loader": "^6.0.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "html-webpack-plugin": "^4.3.0",
     "less": "^3.11.3",
     "less-loader": "^6.1.0",
     "mini-css-extract-plugin": "^0.11.0",
+    "mockjs": "^1.1.0",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "portfinder": "^1.0.26",
     "postcss-loader": "^3.0.0",
