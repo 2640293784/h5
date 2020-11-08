@@ -4,7 +4,7 @@
       <div class="movie-container" :style="{width:`${list.length*6.25}rem`}">
         <div class="swiper-wrapper" v-for="item in list" :key="item.id">
             <a href="Quick_ticket.html">
-              <img :src="`http://192.168.1.102:3001${item.img_url}`" />
+              <img :src="item.img_url" />
               <p class="secskill-main clearfix">
                 <span class="secskill-title-con">{{item.name}}</span>
                 <span class="secskill-number">{{item.grade}}</span>
@@ -66,6 +66,10 @@ export default {
     color: white;
     float: left;
     margin-left: .4rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 70%;
     }
   .secskill-number{
     float: right;

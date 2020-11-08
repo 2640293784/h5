@@ -1,10 +1,13 @@
 const webpack = require('webpack')
 const path = require('path')
 const WebpackBar = require('webpackbar')
+const HappyPack = require('happypack')
+const os = require('os')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const vueLoaderPlugin = require('vue-loader/lib/plugin')
 const { dev, build } = require('../vue.config')
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 const isDrop = process.env.NODE_ENV === 'production'
 function resolve (src) {
   return path.join(__dirname, '..', src);
@@ -22,7 +25,7 @@ module.exports = {
       {
         test: /\.js$/,
         use: {
-          loader: 'babel-loader'
+          loader: 'happypack/loader?id=happyBabel',
         }
         //include:path.resolve(__dirname,'src')
       },
@@ -51,14 +54,14 @@ module.exports = {
           }
         }
       },
-      // {
-      //   test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-      //   loader: 'url-loader',
-      //   options: {
-      //     limit: 10000,
-      //     name: path.posix.join('src/assets','media/[name].[hash:7].[ext]')
-      //   }
-      // },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: path.posix.join('src/assets','media/[name].[hash:7].[ext]')
+        }
+      },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
@@ -71,6 +74,14 @@ module.exports = {
   },
   plugins: [
     new WebpackBar(),
+    new HappyPack({
+      id: 'happyBabel', //用id来标识 happypack处理那里类文件
+      loaders: [{
+        loader: 'babel-loader?cacheDirectory=true',//如何处理  用法和loader 的配置一样
+      }],
+      threadPool: happyThreadPool, //共享进程池
+      verbose: true,//允许 HappyPack 输出日志
+    }),
     new HtmlWebpackPlugin({
       template: './index.html',
       filename: 'index.html',

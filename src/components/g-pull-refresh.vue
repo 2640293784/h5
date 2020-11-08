@@ -10,9 +10,9 @@
       class="pull-refresh-container"
       :success-text="success-text"
       @refresh="onRefresh">
-        <van-empty v-if="list.length===0&&pullLoading&&loading" class="empty" :description="noText" />
+        <van-empty v-if="list.length===0&&refreshing" class="empty" :description="noText" />
         <van-list
-          v-else
+          v-show="list.length!==0"
           v-model="pullLoading"
           :finished="finished&&!refreshing"
           ref="text"
@@ -75,8 +75,10 @@ export default {
     }
   },
   mounted () {
-    const height = this.$refs.text.$parent.$el.offsetHeight
-    this.$refs.text.$el.style.height = `${height}px`
+    this.$nextTick(() => {
+      const height = this.$refs.text.$parent.$el.offsetHeight
+      this.$refs.text.$el.style.height = `${height}px`
+    })
   },
   methods: {
     onLoad () {

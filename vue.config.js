@@ -1,4 +1,4 @@
-const host = 'http://192.168.1.100:8090'
+const host = 'http://192.168.1.101:8090'
 //const host = 'http://192.168.1.102:3001'
 const porxyTable = {
   '/api': {
@@ -15,7 +15,7 @@ module.exports = {
     open_proxy:true, //devEnv.OPEN_PROXY为true开启代理
     proxy: porxyTable,
     port: 8000,//端口
-    host: '192.168.1.100',
+    host: '192.168.1.101',
     devtool: 'eval-source-map',
     //source-map产生一个映射文件
     //eval-source-map不会产生单独的文件，但是会产生行和列

@@ -19,6 +19,7 @@
 
 <script>
 import { userLogin } from '@/api'
+import { isMobile } from '@utils'
 export default {
   name: 'login',
   data () {
@@ -32,6 +33,14 @@ export default {
     async Submit () {
       if (this.code !== this.$code) {
         this.$warning('验证码输入有误')
+        return false
+      }
+      if (!isMobile(this.formData.username)) {
+        this.$warning('用户名输入有误')
+        return false
+      }
+      if (!this.formData.password) {
+        this.$warning('请输入密码')
         return false
       }
       const res = await userLogin(this.formData)

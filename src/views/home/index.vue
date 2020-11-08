@@ -99,9 +99,7 @@ export default {
   },
   components: { MovieList },
   mounted () {
-    this.$toast.loading({
-      duration: 0
-    })
+    this.$toast.loading()
     Promise.all([this.getCarousel(), this.getMovie()], this.getBirth(), this.getFruit()).then(() => {
       this.$toast.clear()
     }).catch(() => {
@@ -119,8 +117,8 @@ export default {
     // 获取电影列表
     async getMovie () {
       const res = await getMovieList()
-      if (res) {
-        this.movieData = res.data || []
+      if (res && res.data) {
+        this.movieData = res.data.data || []
       }
     },
     async getBirth () {

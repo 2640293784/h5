@@ -9,7 +9,4 @@ const dataList =[
   "url": "http://www.ruiyunzhushou.com/images/images/banner3.jpg"
 }
 ]
-module.exports = {
-  status: 200,
-  data: dataList
-}
+module.exports = dataList

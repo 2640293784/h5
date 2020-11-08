@@ -15,7 +15,7 @@
       >
         <template #child="{ item }" >
           <router-link class="col-item" :to="`/details/${item.id}`">
-            <img :src="item.url" />
+            <van-image class="col-image" :lazy-load="item.url" :src="item.url" />
             <p>{{item.text}}</p>
           </router-link>
         </template>
@@ -36,115 +36,47 @@ export default {
       typeData: [],
       index: 0,
       activeKey: 0,
-      list: [{
-        id: 1,
-        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text: '淘宝'
-      }, {
-        id: 2,
-        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text: '淘宝'
-      }, {
-        id: 3,
-        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text: '淘宝'
-      }, {
-        id: 1,
-        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text: '淘宝'
-      }, {
-        id: 1,
-        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text: '淘宝'
-      }, {
-        id: 1,
-        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text: '淘宝'
-      }, {
-        id: 1,
-        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text: '淘宝'
-      }, {
-        id: 1,
-        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text: '淘宝'
-      }, {
-        id: 1,
-        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text: '淘宝'
-      }, {
-        id: 1,
-        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text: '淘宝'
-      }, {
-        id: 1,
-        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text: '淘宝'
-      }, {
-        id: 1,
-        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text: '淘宝'
-      }, {
-        id: 1,
-        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text: '淘宝'
-      }, {
-        id: 1,
-        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text: '淘宝'
-      }, {
-        id: 1,
-        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text: '淘宝'
-      }, {
-        id: 1,
-        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text: '淘宝'
-      }, {
-        id: 1,
-        url: 'http://www.ruiyunzhushou.com/images/jifen/sp.png',
-        text: '淘宝'
-      }]
+      list: []
     }
   },
   mounted () {
     this.getTypeData()
-    const { type } = this.$route.query
-    this.activeKey = type * 1 || 0
   },
   methods: {
     async getClassify () {
-      getProductByTypeId({ typeId: this.activeKey, start: 0, pageSize: 18 })
+      const typeId = this.typeData[this.activeKey].id
+      const res = await getProductByTypeId({ typeId, page: this.index, pageSize: 18 }) || {}
+      if (res && res.data) {
+        this.finished = !res.data.data || res.data.data.length === 0
+        if (!this.finished) {
+          this.list = this.list.concat(res.data.data)
+        }
+      }
+      this.refreshing = false
+      this.loading = false
     },
     async getTypeData () {
       const res = await getTypeList()
       if (res) {
+        const { type } = this.$route.query
         this.typeData = res.data || []
+        this.activeKey = type || 0
+        this.getClassify()
       }
     },
-    sidebarChange (value) {
-      console.log(value)
+    sidebarChange () {
+      this.list = []
+      this.getClassify()
     },
     pullList () {
+      this.loading = true
       this.index++
-      setTimeout(() => {
-        if (this.index === 5) {
-          this.finished = true
-          this.loading = false
-          return false
-        }
-        this.list = this.list.concat(this.list)
-        this.loading = false
-      }, 1000)
+      this.getClassify()
     },
     dropList () {
-      const list = this.list
+      this.index = 0
       this.list = []
       this.refreshing = true
-      setTimeout(() => {
-        this.list = list
-        this.refreshing = false
-      }, 1000)
     }
   }
 }
@@ -161,8 +93,15 @@ export default {
   }
   .col-item{
     text-align: center;
+    .col-image{
+      width: 100%;
+      height:4.25rem;
+    }
     p{
       padding: .44rem 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 </style>
