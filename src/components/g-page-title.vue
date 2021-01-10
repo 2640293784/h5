@@ -26,11 +26,13 @@ export default {
       immediate: true
     }
   },
-  data: {
-    title: '',
-    leftUrl: '',
-    back: false,
-    close: false
+  data () {
+    return {
+      title: '',
+      leftUrl: '',
+      back: false,
+      close: false
+    }
   },
   props: {
     link: {

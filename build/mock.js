@@ -1,11 +1,14 @@
 const express = require('express');    //引入express模块
 const path = require('path')
+const bodyParser = require('body-parser');
 const portfinder = require('portfinder')
 const { ipconfig } = require('./utils')
 // var Mock = require('mockjs')
 let app = express();                //实例化express
 const port = 8090
 app.use(express.static(path.join(__dirname, '../dist')))
+app.use(bodyParser.json())
+app.use(require('body-parser').urlencoded({ extended: true }))
 /**
  * 配置test.action路由
  * @param  {[type]} req  [客户端发过来的请求所带数据]

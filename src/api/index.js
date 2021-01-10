@@ -70,6 +70,7 @@ export const getTypeList = data => axios({
 export const getProductByTypeId = data => axios({
   method: 'get',
   url: '/api/product/getProductByTypeId',
+  loading: false,
   params: data || {}
 })
 // 分类

@@ -7,7 +7,7 @@
             <img src="@img/logo.png" />
           </div>
           <div class="search">
-            <van-search v-model="value" shape="round" placeholder="请输入搜索关键词"/>
+            <van-search v-model="keyWord" shape="round" placeholder="请输入搜索关键词"/>
           </div>
           <div class="address">
             <router-link to="/address">北京</router-link>
@@ -85,6 +85,7 @@ export default {
       movieData: [],
       birthData: [],
       fruitData: [],
+      keyWord: '',
       list: [
         { text: '积分商城', icon: require('@assets/img/banner/1.png'), href: '/integ' },
         { text: '影音天地', icon: require('@assets/img/banner/2.png'), href: '/movie' },

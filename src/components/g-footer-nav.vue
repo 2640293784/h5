@@ -24,7 +24,7 @@ export default {
   name: 'FooterNav',
   props: {
     active: {
-      type: String,
+      type: Number,
       default: 0
     }
   },

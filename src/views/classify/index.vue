@@ -6,16 +6,13 @@
       </van-sidebar>
       <g-pull-refresh
       :number="3"
-      :pullLoading="loading"
-      :finished="finished"
-      :refreshing="refreshing"
-      :list="list"
-      @pull-down="pullList"
-      @drop-down="dropList"
+      :getData="getProductByTypeId"
+      ref="pullRefresh"
+      :params="getDataPar"
       >
         <template #child="{ item }" >
           <router-link class="col-item" :to="`/details/${item.id}`">
-            <van-image class="col-image" :lazy-load="item.url" :src="item.url" />
+            <van-image class="col-image" :lazy-load="true" :src="item.url" />
             <p>{{item.text}}</p>
           </router-link>
         </template>
@@ -33,50 +30,31 @@ export default {
       loading: false,
       refreshing: false,
       finished: false,
+      getDataPar: {
+        activeKey: 0
+      },
+      getProductByTypeId,
       typeData: [],
       index: 0,
-      activeKey: 0,
-      list: []
+      activeKey: 0
     }
   },
   mounted () {
     this.getTypeData()
   },
   methods: {
-    async getClassify () {
-      const typeId = this.typeData[this.activeKey].id
-      const res = await getProductByTypeId({ typeId, page: this.index, pageSize: 18 }) || {}
-      if (res && res.data) {
-        this.finished = !res.data.data || res.data.data.length === 0
-        if (!this.finished) {
-          this.list = this.list.concat(res.data.data)
-        }
-      }
-      this.refreshing = false
-      this.loading = false
-    },
     async getTypeData () {
-      const res = await getTypeList()
-      if (res) {
+      const res = await getTypeList() || {}
+      if (res.data) {
         const { type } = this.$route.query
         this.typeData = res.data || []
         this.activeKey = type || 0
-        this.getClassify()
+        this.$refs.pullRefresh.init()
       }
     },
-    sidebarChange () {
-      this.list = []
-      this.getClassify()
-    },
-    pullList () {
-      this.loading = true
-      this.index++
-      this.getClassify()
-    },
-    dropList () {
-      this.index = 0
-      this.list = []
-      this.refreshing = true
+    sidebarChange (val) {
+      this.getDataPar.activeKey = val
+      this.$refs.pullRefresh.init()
     }
   }
 }

@@ -9,8 +9,10 @@
 <script>
 export default {
   name: 'app',
-  data: {
-    isTitle: false
+  data () {
+    return {
+      isTitle: false
+    }
   },
   watch: {
     $route: {

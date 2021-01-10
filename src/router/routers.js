@@ -4,7 +4,7 @@ const routers = [
   {
     path: '/',
     component: _import('home'),
-    name: 'main',
+    name: 'home',
     meta: {
       title: '首页'
     }
@@ -132,6 +132,15 @@ const routers = [
     meta: {
       title: '账户充值',
       isLogin: true,
+      show: true
+    }
+  },
+  {
+    path: '/demo',
+    component: _import('demo'),
+    name: 'demo',
+    meta: {
+      title: 'demo',
       show: true
     }
   },

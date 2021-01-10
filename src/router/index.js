@@ -17,6 +17,9 @@ const router = new Router({
 })
 router.beforeEach((to, from, next) => {
   const token = Vue.cookie.get('koa.sid')
+  if (!to.name) {
+    next({ name: '404' })
+  }
   if (!token && to.meta.isLogin) {
     next({ name: 'login' })
   } else {

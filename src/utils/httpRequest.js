@@ -13,7 +13,8 @@ http.interceptors.request.use(config => {
   // 默认json格式
   config.headers['Content-Type'] = config['Content-Type'] || 'application/json; charset=utf-8'
   config.url = process.env.ENV === 'production' ? `${origin}/v1${config.url}` : `${origin}${config.url}`
-  config.loading = config.loading || true
+  config.loading = config.loading !== undefined ? config.loading : true
+  config.method = config.method || 'get'
   // 判断是否需要loading
   config.loading && Toast.loading({
     duration: 0
@@ -52,10 +53,10 @@ http.interceptors.response.use(response => {
           type: 'warning',
           message: data.message
         })
-        if (data.data.code === 401) {
-          router.push({ path: '/login' })
-        }
       }
+      break
+    case 401:
+      router.push({ path: '/login' })
       break
     case 404:
       Notify({

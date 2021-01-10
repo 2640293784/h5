@@ -7,24 +7,20 @@
     </van-overlay>
     <van-pull-refresh
       v-model="refreshing"
-      class="pull-refresh-container"
-      :success-text="success-text"
+      class="pull-refresh-parent"
+      :success-text="successText"
       @refresh="onRefresh">
-        <van-empty v-if="list.length===0&&refreshing" class="empty" :description="noText" />
-        <van-list
-          v-show="list.length!==0"
-          v-model="pullLoading"
-          :finished="finished&&!refreshing"
-          ref="text"
-          :finished-text="finishedText"
-          @load="onLoad"
-        >
-          <div class="container" :style="{gridTemplateColumns: `repeat(auto-fill, ${100/number}%)`}">
-            <div v-for="(item,index) in list" :key="item">
-              <slot name="child" :item="item" :index="index">{{item}}</slot>
-            </div>
+      <van-empty v-if="list.length===0&&refreshing" class="empty" :description="noText" />
+      <div @scroll="onLoad" ref="pull-refresh" class="pull-refresh-container">
+        <div class="container" :style="{gridTemplateColumns: `repeat(auto-fill, ${100/number}%)`}">
+          <div v-for="(item,index) in list" :key="index">
+            <slot name="child" :item="item" :index="index">{{item}}</slot>
           </div>
-        </van-list>
+        </div>
+        <div class="pull-refresh-loading">
+          <van-loading size="24px" v-if="pullLoading">加载中...</van-loading>
+        </div>
+      </div>
     </van-pull-refresh>
   </div>
 </template>
@@ -35,6 +31,14 @@ export default {
     finishedText: {
       type: String,
       default: '没有更多了'
+    },
+    getData: {
+      type: Function,
+      required: true
+    },
+    params: {
+      type: Object,
+      default: () => ({})
     },
     noText: {
       type: String,
@@ -48,16 +52,14 @@ export default {
       type: String,
       default: '加载中...'
     },
-    finished: false, // 判断时候否加载完毕
-    list: {
-      type: Array,
-      default: () => []
+    pageSize: {
+      type: Number,
+      default: 10
+    },
+    page: {
+      type: Number
     },
     loading: { // 全局loading
-      type: Boolean,
-      default: false
-    },
-    pullLoading: { // 下拉加载loading
       type: Boolean,
       default: false
     },
@@ -72,21 +74,46 @@ export default {
   },
   data () {
     return {
+      pageOption: {
+        page: 1
+      },
+      finished: false, // 判断时候否加载完毕
+      pullLoading: false,
+      list: []
     }
   },
   mounted () {
-    this.$nextTick(() => {
-      const height = this.$refs.text.$parent.$el.offsetHeight
-      this.$refs.text.$el.style.height = `${height}px`
-    })
+    this.pageOption.pageSize = this.pageSize
   },
   methods: {
+    init () {
+      this.list = []
+      this.pageOption.page = 1
+      this.getList()
+    },
+    async getList () {
+      this.pullLoading = true
+      const res = await this.getData({ ...this.params, ...this.pageOption }) || {}
+      if (res && res.data) {
+        this.finished = !res.data.data || res.data.data.length === 0
+        if (!this.finished) {
+          this.list = [...this.list, ...res.data.data]
+        }
+      }
+      this.pullLoading = false
+      this.refreshing = false
+    },
     onLoad () {
-      this.$emit('pull-down')
+      const { scrollTop, offsetHeight, scrollHeight } = this.$refs['pull-refresh']
+      if (Math.ceil(scrollTop) + offsetHeight === scrollHeight && !this.pullLoading) {
+        this.getList()
+        // this.$emit('pull-down')
+      }
     },
     onRefresh () {
-      this.$emit('drop-down')
-      this.refreshing = false
+      this.init()
+      // this.$emit('drop-down')
+      // this.refreshing = false
     }
   }
 }
@@ -97,16 +124,20 @@ export default {
     height: 100%;
     overflow: hidden;
   }
+  .pull-refresh-parent{
+    height: 100%;
+  }
   .pull-refresh-container{
     height: 100%;
+    box-sizing:border-box;
     overflow-y: auto;
+  }
+  .container{
+    display: grid;
   }
   .empty{
     width: 100%;
     height: 100%;
-  }
-  .container{
-     display: grid;
   }
   .loading-center{
     height: 100%;
@@ -117,5 +148,10 @@ export default {
   }
   .overlay-index{
     z-index: 10000;
+  }
+  .pull-refresh-loading{
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
   }
 </style>
